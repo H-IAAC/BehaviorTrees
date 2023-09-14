@@ -1,4 +1,4 @@
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Method for composite node sort children by utility

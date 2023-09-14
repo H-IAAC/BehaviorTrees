@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Parameter for a behavior tag or agent/tree.

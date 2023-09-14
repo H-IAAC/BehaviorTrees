@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Type of some parameter for behavior tags.

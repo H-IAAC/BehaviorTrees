@@ -6,7 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// View for BehaviorTree Editor

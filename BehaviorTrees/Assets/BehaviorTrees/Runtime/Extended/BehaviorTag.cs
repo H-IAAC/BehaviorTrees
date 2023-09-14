@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// BehaviorTag contains a tree and parameters to instantiate and 

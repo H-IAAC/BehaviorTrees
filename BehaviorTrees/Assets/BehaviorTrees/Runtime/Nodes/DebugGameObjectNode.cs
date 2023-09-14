@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Prints the binded game object in update.

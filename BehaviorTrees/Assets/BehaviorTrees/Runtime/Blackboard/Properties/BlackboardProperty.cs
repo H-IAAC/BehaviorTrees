@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEditor;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Main class for creating blackboard properties.

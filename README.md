@@ -20,6 +20,8 @@ See more projects from the group [here](https://github.com/brgsil/RepoOrganizer)
 
 Latest release area avaiable in the [Releases](https://github.com/H-IAAC/BehaviorTrees/releases) page.
 
+Can also be installed using git url in `Package Manager`: https://github.com/H-IAAC/BehaviorTrees.git?path=BehaviorTrees/Assets/BehaviorTrees
+
 - Create a new `Behavior Tree` in "Create\Behavior Tree\Behavior Tree"
 - Double click for open the editor.
 - Add the nodes and connect to the root.

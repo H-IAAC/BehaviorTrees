@@ -1,4 +1,4 @@
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
 
     /// <summary>

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
 
     /// <summary>

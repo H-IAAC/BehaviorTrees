@@ -8,7 +8,7 @@ using UnityEditor;
 #endif
 
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Blackboard for store tree of node properties.

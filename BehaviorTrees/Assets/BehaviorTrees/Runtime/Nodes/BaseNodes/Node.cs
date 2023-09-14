@@ -5,7 +5,7 @@ using System.Collections;
 using System.Linq;
 
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     
     /// <summary>

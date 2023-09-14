@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Interface for objects that provides behavior tags

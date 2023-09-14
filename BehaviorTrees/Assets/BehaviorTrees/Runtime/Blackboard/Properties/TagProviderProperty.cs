@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     [Serializable]
     class TagProviderProperty : BlackboardProperty

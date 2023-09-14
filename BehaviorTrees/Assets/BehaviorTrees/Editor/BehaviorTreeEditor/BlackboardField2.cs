@@ -3,7 +3,7 @@ using System;
 using UnityEngine.UIElements;
 using UnityEditor;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// BlackboardField with actions on select and delete.

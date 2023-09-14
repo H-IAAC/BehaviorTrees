@@ -8,7 +8,7 @@ using System;
 using System.Reflection;
 using UnityEngine.UIElements;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
 
     public class BlackboardView : UnityEditor.Experimental.GraphView.Blackboard

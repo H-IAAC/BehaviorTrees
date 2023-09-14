@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Runs the tree associating it to the object

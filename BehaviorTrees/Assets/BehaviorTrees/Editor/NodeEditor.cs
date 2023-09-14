@@ -4,7 +4,7 @@ using UnityEditor;
 using System.Reflection;
 using System;
 
-namespace HIAAC.BehaviorTree
+namespace HIAAC.BehaviorTrees
 {
     /// <summary>
     /// Custom editor for Nodes
