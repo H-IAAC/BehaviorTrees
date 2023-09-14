@@ -1,0 +1,19 @@
+{
+    "name": "com.hiaac.behaviortrees",
+    "version": "0.1.0",
+    "displayName": "Behavior Trees",
+    "description": "Implementation of basic behavior trees and extensions such as utility and extended trees.",
+    "author": {
+        "name": "H.IAAC",
+        "email": "hiaac@unicamp.br",
+        "url": "https://hiaac.unicamp.br/"
+    },
+    "keywords": [
+        "behavior tree",
+        "ai",
+        "artificial intelligence",
+        "npc"
+    ],
+    "documentationUrl": "https://github.com/H-IAAC/BehaviorTrees",
+    "license": ""
+}

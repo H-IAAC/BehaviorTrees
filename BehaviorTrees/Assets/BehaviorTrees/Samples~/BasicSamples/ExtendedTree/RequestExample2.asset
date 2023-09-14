@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6387717117127284089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 989039790463547615}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+    runtime: 0
+  guid: 34e74f28-cc07-413a-a1ab-21475614e106
+  position: {x: 0, y: 354}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: 1316469605574405223}
+  - {fileID: 3055527234995929812}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: RequestExample2
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 210294509508170890}
+  nodes:
+  - {fileID: 210294509508170890}
+  - {fileID: 3176819949644076998}
+  - {fileID: 989039790463547615}
+  - {fileID: -6387717117127284089}
+  - {fileID: 8223607755525894717}
+  - {fileID: 1316469605574405223}
+  - {fileID: 3055527234995929812}
+  bTagParameters:
+  - type: {fileID: 11400000, guid: f4e0433407ef7ae44815e21592db5946, type: 2}
+    value: 1
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344846
+      parentName: 
+    runtime: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344846
+      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: TagProvider
+        value: {fileID: 0}
+--- !u!114 &210294509508170890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+    runtime: 0
+  guid: e733956e-ce4d-438a-a099-134d4ea18a52
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
+  child: {fileID: 3176819949644076998}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &989039790463547615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 3176819949644076998}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties: []
+    runtime: 0
+  guid: 2c47b5e0-cd1f-49c5-8ead-4995ca872a78
+  position: {x: 0, y: 222}
+  useMemory: 0
+  description: 
+  children:
+  - {fileID: 8223607755525894717}
+  - {fileID: -6387717117127284089}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &1316469605574405223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919242ca5e2abab4d94ad5002dbae9ee, type: 3}
+  m_Name: RequestBehaviorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -6387717117127284089}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344837
+      parentName: 
+    runtime: 0
+  guid: 5129be6a-a7c2-4959-9d0b-a9372143c645
+  position: {x: -131, y: 511}
+  useMemory: 1
+  description: 
+  subtree: {fileID: 0}
+  passValue: 00
+  autoRemapOnAssign: 0
+  propertiesDontDeleteOnValidate:
+  - tagProvider
+  minimumValueParameters: []
+  maximumValueParameters: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344837
+      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tagProvider
+        value: {fileID: 11400000, guid: 4fbfcc44154d4934ba31986cedde2334, type: 2}
+--- !u!114 &3055527234995929812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919242ca5e2abab4d94ad5002dbae9ee, type: 3}
+  m_Name: RequestBehaviorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: -6387717117127284089}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344847
+      parentName: 
+    runtime: 0
+  guid: 98f57b2b-f825-4855-947a-e70bd369a86e
+  position: {x: 99.24999, y: 511.4502}
+  useMemory: 1
+  description: 
+  subtree: {fileID: 0}
+  passValue: 00
+  autoRemapOnAssign: 0
+  propertiesDontDeleteOnValidate:
+  - tagProvider
+  minimumValueParameters: []
+  maximumValueParameters: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344847
+      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: tagProvider
+        value: {fileID: 11400000, guid: 4a8cb41133142a94e962129ceefc2d83, type: 2}
+--- !u!114 &3176819949644076998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156ccb351dabd75479b18f1b6a87396b, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344835
+      parentName: 
+    runtime: 0
+  guid: 9e68959f-5891-4e41-a5f5-7fa3b4c1c1e0
+  position: {x: 0, y: 107}
+  useMemory: 1
+  description: 
+  child: {fileID: 989039790463547615}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344835
+      type: {class: UIntBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: repeatCount
+        value: 2
+--- !u!114 &8223607755525894717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  tree: {fileID: 11400000}
+  parent: {fileID: 989039790463547615}
+  gameObject: {fileID: 0}
+  blackboard:
+    properties:
+    - property:
+        rid: 6199964247437344836
+      parentName: 
+    runtime: 0
+  guid: 4c2e4af1-639d-498c-9734-a5081fc9e9e5
+  position: {x: -187.09996, y: 354}
+  useMemory: 1
+  description: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 6199964247437344836
+      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: duration
+        value: 2

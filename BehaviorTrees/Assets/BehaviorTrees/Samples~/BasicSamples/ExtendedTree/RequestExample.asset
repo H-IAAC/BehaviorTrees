@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8482181159328072708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d64e37476406ea4c81e9431fcb2904b, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d1609614-dea0-49cf-aa50-28e4dd0edb60
+  position: {x: 0, y: 250}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 8970362275988990835}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -6798806829233507640}
+  - {fileID: -3235514876609949787}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+--- !u!114 &-7339145959541849673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601edd9596d0134c85c1ed243c20f3f, type: 3}
+  m_Name: duration
+  m_EditorClassIdentifier: 
+  value: 5
+--- !u!114 &-7067514802510600778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: FromMainTree
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &-6798806829233507640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d386b776-9f41-4c29-808d-d02026911448
+  position: {x: -231, y: 410}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: -8482181159328072708}
+  propertyBlackboardMap:
+  - variable: duration
+    blackboardProperty: 
+  variables:
+  - {fileID: -7339145959541849673}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
+--- !u!114 &-3235514876609949787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480b827507b5954d92fc2a4971aab19, type: 3}
+  m_Name: FallbackNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: bf4c685a-f63f-4a66-bf2a-ec4a39e5c8b2
+  position: {x: 0, y: 386}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -8482181159328072708}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: 1202538265212907538}
+  - {fileID: 6384127949016640251}
+  useUtility: 0
+  utilityPropagationMethod: 0
+  utilitySelectionMethod: 0
+  utilityThreshould: 0
+--- !u!114 &-1410006188193617550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694841fbf077a084383c3531f31a6a4a, type: 3}
+  m_Name: repeatCount
+  m_EditorClassIdentifier: 
+  value: 3
+--- !u!114 &-1116426152149312725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d35a15f1b79b64584f18681effd36a, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 8d21a370-aea1-4c50-be75-1cdb8d9d4b66
+  position: {x: 0, y: 0}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: 0}
+  propertyBlackboardMap: []
+  variables: []
+  blackboard: []
+  tree: {fileID: 11400000}
+  child: {fileID: 8970362275988990835}
+--- !u!114 &-717246508357780701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d97622a3d45f4bba0eafe98dcc11a, type: 3}
+  m_Name: tagProvider
+  m_EditorClassIdentifier: 
+  tagProviderObj: {fileID: 11400000, guid: 4a8cb41133142a94e962129ceefc2d83, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
+  m_Name: RequestExample
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -1116426152149312725}
+  treeState: 0
+  nodes:
+  - {fileID: -1116426152149312725}
+  - {fileID: -3235514876609949787}
+  - {fileID: 1202538265212907538}
+  - {fileID: 6384127949016640251}
+  - {fileID: 8970362275988990835}
+  - {fileID: -6798806829233507640}
+  - {fileID: -8482181159328072708}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  bTagParameters:
+  - type: {fileID: 11400000, guid: f4e0433407ef7ae44815e21592db5946, type: 2}
+    value: 1
+  runtime: 0
+--- !u!114 &1202538265212907538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919242ca5e2abab4d94ad5002dbae9ee, type: 3}
+  m_Name: RequestBehaviorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 20f0474b-fec7-4fb3-afed-f3013109ae59
+  position: {x: -113, y: 532}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: -3235514876609949787}
+  propertyBlackboardMap:
+  - variable: tagProvider
+    blackboardProperty: 
+  variables:
+  - {fileID: 6054126466324450279}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
+  subtree: {fileID: 0}
+  passValue: 00
+  autoRemapOnAssign: 0
+  propertiesDontDeleteOnValidate:
+  - tagProvider
+  minimumValueParameters: []
+  maximumValueParameters: []
+--- !u!114 &2042102572712819336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard1
+  m_EditorClassIdentifier: 
+  value: 
+--- !u!114 &6054126466324450279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9d97622a3d45f4bba0eafe98dcc11a, type: 3}
+  m_Name: tagProvider
+  m_EditorClassIdentifier: 
+  tagProviderObj: {fileID: 11400000, guid: 4fbfcc44154d4934ba31986cedde2334, type: 2}
+--- !u!114 &6384127949016640251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919242ca5e2abab4d94ad5002dbae9ee, type: 3}
+  m_Name: RequestBehaviorNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9a8243a7-4222-4aa9-a332-0a3c4949f42d
+  position: {x: 103, y: 532}
+  gameObject: {fileID: 0}
+  useMemory: 1
+  description: 
+  parent: {fileID: -3235514876609949787}
+  propertyBlackboardMap:
+  - variable: tagProvider
+    blackboardProperty: 
+  variables:
+  - {fileID: -717246508357780701}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
+  subtree: {fileID: 0}
+  passValue: 00
+  autoRemapOnAssign: 0
+  propertiesDontDeleteOnValidate:
+  - tagProvider
+  minimumValueParameters: []
+  maximumValueParameters: []
+--- !u!114 &7996230200442618730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3a044dda8dcf44d84987e8184b1803, type: 3}
+  m_Name: Blackboard1
+  m_EditorClassIdentifier: 
+  value: From Request Example
+--- !u!114 &8970362275988990835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156ccb351dabd75479b18f1b6a87396b, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e4288605-613c-4a62-b3b4-dda1fef0d4fe
+  position: {x: 0, y: 136}
+  gameObject: {fileID: 0}
+  useMemory: 0
+  description: 
+  parent: {fileID: -1116426152149312725}
+  propertyBlackboardMap:
+  - variable: repeatCount
+    blackboardProperty: 
+  variables:
+  - {fileID: -1410006188193617550}
+  blackboard:
+  - {fileID: 7996230200442618730}
+  tree: {fileID: 11400000}
+  child: {fileID: -8482181159328072708}

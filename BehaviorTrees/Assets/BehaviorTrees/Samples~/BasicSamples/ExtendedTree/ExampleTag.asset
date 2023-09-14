@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5087b5d23bd60a0478414164789a890c, type: 3}
+  m_Name: ExampleTag
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: e6eb325ce05696d43b9352c6da0b79ac, type: 2}
+  onSuccess: 0
+  onFailure: 0
+  onRunning: 1
+  parameters: []
+  minimumValueParameters: []
+  maximumValueParameters:
+  - type: {fileID: 11400000, guid: f4e0433407ef7ae44815e21592db5946, type: 2}
+    value: 0

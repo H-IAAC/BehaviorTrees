@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/BehaviorTree/Editor/BehaviorTreeEditor/BehaviorTreeEditor.uss?fileID=7433441132597879392&amp;guid=cdb70d451381ac74d8f4614fb55585c6&amp;type=3#BehaviorTreeEditor" />
+    <uie:Toolbar>
+        <uie:ToolbarMenu tabindex="-1" display-tooltip-when-elided="true" name="ToolbarMenu" text="Assets" />
+    </uie:Toolbar>
+    <HIAAC.BehaviorTree.SplitView fixed-pane-initial-dimension="300" name="HIAAC.BehaviorTree.SplitView">
+        <ui:VisualElement name="left-panel">
+            <HIAAC.BehaviorTree.SplitView orientation="Vertical" fixed-pane-initial-dimension="354">
+                <ui:VisualElement name="inspector-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:Label tabindex="-1" text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                    <HIAAC.BehaviorTree.InspectorView name="inspector" />
+                </ui:VisualElement>
+                <ui:VisualElement name="agent-parameters" style="background-color: rgb(60, 60, 60);">
+                    <ui:Label tabindex="-1" text="Agent Parameters" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+                    <HIAAC.BehaviorTree.InspectorView name="agent-parameters" />
+                </ui:VisualElement>
+            </HIAAC.BehaviorTree.SplitView>
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:Label tabindex="-1" text="Tree View" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37);" />
+            <HIAAC.BehaviorTree.BehaviorTreeView focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </HIAAC.BehaviorTree.SplitView>
+</ui:UXML>
