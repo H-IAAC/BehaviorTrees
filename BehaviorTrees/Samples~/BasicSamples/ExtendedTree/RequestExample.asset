@@ -19,8 +19,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-    runtime: 0
-  guid: 34e74f28-cc07-413a-a1ab-21475614e106
+  guid: d85ec784-a606-40f7-aba7-a0485da09dc8
   position: {x: 0, y: 354}
   useMemory: 0
   description: 
@@ -59,19 +58,10 @@ MonoBehaviour:
   - type: {fileID: 11400000, guid: f4e0433407ef7ae44815e21592db5946, type: 2}
     value: 1
   blackboard:
-    properties:
-    - property:
-        rid: 6199964247437344846
-      parentName: 
-    runtime: 0
+    properties: []
   references:
     version: 2
-    RefIds:
-    - rid: 6199964247437344846
-      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
-      data:
-        PropertyName: TagProvider
-        value: {fileID: 0}
+    RefIds: []
 --- !u!114 &210294509508170890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +81,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-    runtime: 0
-  guid: e733956e-ce4d-438a-a099-134d4ea18a52
+  guid: b526a662-2a87-479a-bfa1-89294e06c854
   position: {x: 0, y: 0}
   useMemory: 0
   description: 
@@ -119,8 +108,7 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   blackboard:
     properties: []
-    runtime: 0
-  guid: 2c47b5e0-cd1f-49c5-8ead-4995ca872a78
+  guid: c3d55b96-0fbd-4e50-814a-1795257051a0
   position: {x: 0, y: 222}
   useMemory: 0
   description: 
@@ -156,9 +144,8 @@ MonoBehaviour:
     - property:
         rid: 6199964247437344837
       parentName: 
-    runtime: 0
-  guid: 5129be6a-a7c2-4959-9d0b-a9372143c645
-  position: {x: -131, y: 511}
+  guid: bba408b2-6daa-44cc-94a1-dcbe81ba0204
+  position: {x: -111.9999, y: 511.00003}
   useMemory: 1
   description: 
   subtree: {fileID: 0}
@@ -198,8 +185,7 @@ MonoBehaviour:
     - property:
         rid: 6199964247437344847
       parentName: 
-    runtime: 0
-  guid: 98f57b2b-f825-4855-947a-e70bd369a86e
+  guid: b3e02e93-f1eb-4c36-9614-cf027a820622
   position: {x: 99.24999, y: 511.4502}
   useMemory: 1
   description: 
@@ -240,8 +226,7 @@ MonoBehaviour:
     - property:
         rid: 6199964247437344835
       parentName: 
-    runtime: 0
-  guid: 9e68959f-5891-4e41-a5f5-7fa3b4c1c1e0
+  guid: 85a784a3-7d00-4e60-81bf-d13e50209274
   position: {x: 0, y: 107}
   useMemory: 1
   description: 
@@ -276,9 +261,8 @@ MonoBehaviour:
     - property:
         rid: 6199964247437344836
       parentName: 
-    runtime: 0
-  guid: 4c2e4af1-639d-498c-9734-a5081fc9e9e5
-  position: {x: -187.09996, y: 354}
+  guid: 86f344ff-ebdf-4b11-a87b-a21118d26b57
+  position: {x: -187.00003, y: 354}
   useMemory: 1
   description: 
   references:

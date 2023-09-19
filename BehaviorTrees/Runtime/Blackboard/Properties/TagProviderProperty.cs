@@ -4,10 +4,9 @@ using UnityEngine;
 namespace HIAAC.BehaviorTrees
 {
     [Serializable]
-    class TagProviderProperty : BlackboardProperty
+    public class TagProviderProperty : BlackboardProperty
     {
         [SerializeField]
-        [SerializeProperty("Value")]
         UnityEngine.Object value;
 
         public override object Value

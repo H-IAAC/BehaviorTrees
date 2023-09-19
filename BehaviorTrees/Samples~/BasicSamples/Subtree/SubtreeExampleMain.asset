@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7954395546828384528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 479853ba-cf37-4709-b8f4-941ffcaef6c1
-  position: {x: 578, y: 534}
-  gameObject: {fileID: 0}
-  useMemory: 1
-  description: 
-  parent: {fileID: 0}
-  tree: {fileID: 11400000}
-  blackboard:
-    properties: []
-    runtime: 0
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &-7639251979923295638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,16 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 74bdc480-7ce7-466d-a1d0-e1359f0d4f0f
-  position: {x: 0, y: 104}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: -3807608494041042885}
   tree: {fileID: 11400000}
+  parent: {fileID: -3807608494041042885}
+  gameObject: {fileID: 0}
   blackboard:
     properties: []
-    runtime: 0
+  guid: c7519bd2-4525-4d3e-b04c-19cfdb889ab9
+  position: {x: 0, y: 104}
+  useMemory: 0
+  description: 
   children:
   - {fileID: 822744548588997364}
   - {fileID: -7035516468689213043}
@@ -76,19 +48,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 728edff2-f03d-4d4d-a125-d94931fc7066
-  position: {x: 0, y: 233}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: -7639251979923295638}
   tree: {fileID: 11400000}
+  parent: {fileID: -7639251979923295638}
+  gameObject: {fileID: 0}
   blackboard:
     properties:
     - property:
         rid: 6199964247437344772
       parentName: Blackboard1
-    runtime: 0
+  guid: 16097520-1502-46b4-b21c-783f6d8301fe
+  position: {x: 0, y: 233}
+  useMemory: 0
+  description: 
   onStart: 0
   onStop: 0
   onUpdate: 1
@@ -114,16 +85,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: e0f68992-1293-4cc2-973d-937dbb91f98c
-  position: {x: 0, y: 0}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: 0}
   tree: {fileID: 11400000}
+  parent: {fileID: 0}
+  gameObject: {fileID: 0}
   blackboard:
     properties: []
-    runtime: 0
+  guid: 7bb2508f-ca02-4313-b4fd-d9805fb5ff6f
+  position: {x: 0, y: 0}
+  useMemory: 0
+  description: 
   child: {fileID: -7639251979923295638}
   references:
     version: 2
@@ -144,7 +114,6 @@ MonoBehaviour:
   nodes:
   - {fileID: -3807608494041042885}
   - {fileID: -7639251979923295638}
-  - {fileID: -7954395546828384528}
   - {fileID: 822744548588997364}
   - {fileID: -7035516468689213043}
   - {fileID: 4779996925307932341}
@@ -154,7 +123,6 @@ MonoBehaviour:
     - property:
         rid: 6199964246474752076
       parentName: 
-    runtime: 0
   references:
     version: 2
     RefIds:
@@ -177,19 +145,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 71ef0232-6fc0-4c5e-8aeb-7a1df75e3d68
-  position: {x: -150, y: 233}
-  gameObject: {fileID: 0}
-  useMemory: 0
-  description: 
-  parent: {fileID: -7639251979923295638}
   tree: {fileID: 11400000}
+  parent: {fileID: -7639251979923295638}
+  gameObject: {fileID: 0}
   blackboard:
     properties:
     - property:
         rid: 6199964247437344771
       parentName: 
-    runtime: 0
+  guid: 318f40a2-3e4c-4be9-8ca8-e4ec4af73dd6
+  position: {x: -150, y: 233}
+  useMemory: 0
+  description: 
   onStart: 0
   onStop: 0
   onUpdate: 1
@@ -215,35 +182,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: c49b1a5d-8510-4909-abb4-2e4529cfcc9c
-  position: {x: 166, y: 233}
-  gameObject: {fileID: 0}
-  useMemory: 1
-  description: 
-  parent: {fileID: -7639251979923295638}
   tree: {fileID: 11400000}
+  parent: {fileID: -7639251979923295638}
+  gameObject: {fileID: 0}
   blackboard:
     properties:
     - property:
-        rid: 6199964247437344787
+        rid: 4942869263861153823
       parentName: 
     - property:
-        rid: 6199964247437344788
+        rid: 4942869263861153824
       parentName: 
-    runtime: 0
-  subtree: {fileID: 11400000, guid: 39bb8c7d1aecc51488378dabe6a8e305, type: 2}
-  passValue: 0000
+  guid: 01b9d4ad-7126-454f-bbf8-a2d9563fb005
+  position: {x: 150.00005, y: 223.00002}
+  useMemory: 1
+  description: 
+  subtree: {fileID: 11400000, guid: 4a0cbd3c7830af84d85b595717ba60a0, type: 2}
+  passValue: 0000000000
   autoRemapOnAssign: 0
   propertiesDontDeleteOnValidate: []
   references:
     version: 2
     RefIds:
-    - rid: 6199964247437344787
+    - rid: 4942869263861153823
       type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: WillBeOvewriten
         value: 
-    - rid: 6199964247437344788
+    - rid: 4942869263861153824
       type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: Sub Blackboard

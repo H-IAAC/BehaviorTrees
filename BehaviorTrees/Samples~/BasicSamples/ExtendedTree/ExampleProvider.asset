@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags:
   - {fileID: 11400000, guid: 638ad60b38d579c42b4dfbc4b47f0316, type: 2}
+  randomizeOnProvide: 0
+  randomizeOnEnable: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5087b5d23bd60a0478414164789a890c, type: 3}
   m_Name: ExampleTag2
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 63f403469c7f07643ae23a1ddfd5205c, type: 2}
+  tree: {fileID: 11400000, guid: c0254f91ec59aeb4fa877d9ffb822f8a, type: 2}
   onSuccess: 0
   onFailure: 0
   onRunning: 1

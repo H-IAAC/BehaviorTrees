@@ -173,9 +173,15 @@ namespace HIAAC.BehaviorTrees
                         EditorGUILayout.EndHorizontal();
 
                         if (property.parentName == "")
-                        {
+                        {                      
                             SerializedProperty propertyData = serializedObject.FindProperty($"blackboard.properties.Array.data[{i}].property.value");
-                            Type propertyType = property.property.GetType().GetField("value", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).FieldType;
+
+                            FieldInfo valueField = property.property.GetType().GetField("value", BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+                            if(valueField == null)
+                            {
+                                valueField = typeof(BlackboardProperty<>).GetField("value", BindingFlags.NonPublic | BindingFlags.Instance);
+                            }
+                            Type propertyType = valueField.FieldType;
 
                             if(propertyType.IsSubclassOf(typeof(UnityEngine.Object)) || propertyType == typeof(UnityEngine.Object))
                             {
