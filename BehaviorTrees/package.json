@@ -15,5 +15,12 @@
         "npc"
     ],
     "documentationUrl": "https://github.com/H-IAAC/BehaviorTrees",
-    "license": ""
+    "license": "",
+    "samples": [
+        {
+            "displayName": "Basic samples",
+            "description": "Basic samples with subtrees and extended trees.",
+            "path": "Samples~/BasicSamples"
+        }
+    ]
 }

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
-  m_Name: RequestExample2
+  m_Name: RequestExample
   m_EditorClassIdentifier: 
   rootNode: {fileID: 210294509508170890}
   nodes:
@@ -68,7 +68,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6199964247437344846
-      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: TagProvider
         value: {fileID: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6199964247437344837
-      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: tagProvider
         value: {fileID: 11400000, guid: 4fbfcc44154d4934ba31986cedde2334, type: 2}
@@ -214,7 +214,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6199964247437344847
-      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      type: {class: TagProviderProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: tagProvider
         value: {fileID: 11400000, guid: 4a8cb41133142a94e962129ceefc2d83, type: 2}
@@ -250,7 +250,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6199964247437344835
-      type: {class: UIntBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      type: {class: UIntBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: repeatCount
         value: 2
@@ -285,7 +285,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6199964247437344836
-      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+      type: {class: FloatBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: duration
         value: 2

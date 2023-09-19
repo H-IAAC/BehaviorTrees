@@ -1,33 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7954395546828384528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e82e3dfa32a3a948a47cfb306b0a776, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 479853ba-cf37-4709-b8f4-941ffcaef6c1
-  position: {x: 578, y: 534}
-  gameObject: {fileID: 0}
-  useMemory: 1
-  description: 
-  parent: {fileID: 0}
-  tree: {fileID: 11400000}
-  blackboard:
-    properties: []
-    runtime: 0
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &-7639251979923295638
+--- !u!114 &-3297239115332773467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 74bdc480-7ce7-466d-a1d0-e1359f0d4f0f
-  position: {x: 0, y: 104}
+  guid: 6851bd64-5e9e-4697-9ef2-9e6403b56361
+  position: {x: 0, y: 88}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: -3807608494041042885}
+  parent: {fileID: -1097403174093695077}
   tree: {fileID: 11400000}
   blackboard:
     properties: []
     runtime: 0
   children:
-  - {fileID: 822744548588997364}
-  - {fileID: -7035516468689213043}
-  - {fileID: 4779996925307932341}
+  - {fileID: -2720860665856187830}
+  - {fileID: 6892321940944733366}
+  - {fileID: 2209656077179077914}
   useUtility: 0
   utilityPropagationMethod: 0
   utilitySelectionMethod: 0
@@ -62,7 +35,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
---- !u!114 &-7035516468689213043
+--- !u!114 &-2720860665856187830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,18 +49,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 728edff2-f03d-4d4d-a125-d94931fc7066
-  position: {x: 0, y: 233}
+  guid: ea722555-c2c1-4021-9afe-9a7a9bd183ad
+  position: {x: -150, y: 221}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: -7639251979923295638}
+  parent: {fileID: -3297239115332773467}
   tree: {fileID: 11400000}
   blackboard:
     properties:
     - property:
-        rid: 6199964247437344772
-      parentName: Blackboard1
+        rid: 6199964247437344773
+      parentName: 
     runtime: 0
   onStart: 0
   onStop: 0
@@ -95,12 +68,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6199964247437344772
-      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+    - rid: 6199964247437344773
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: message
-        value: 
---- !u!114 &-3807608494041042885
+        value: Subtree
+--- !u!114 &-1097403174093695077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: e0f68992-1293-4cc2-973d-937dbb91f98c
+  guid: a1ac8309-c155-44af-b9c9-3c5f6eb3d526
   position: {x: 0, y: 0}
   gameObject: {fileID: 0}
   useMemory: 0
@@ -124,7 +97,7 @@ MonoBehaviour:
   blackboard:
     properties: []
     runtime: 0
-  child: {fileID: -7639251979923295638}
+  child: {fileID: -3297239115332773467}
   references:
     version: 2
     RefIds: []
@@ -138,32 +111,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae9381df58a0b844beb7886ead5f4c1, type: 3}
-  m_Name: SubtreeExampleMain
+  m_Name: SubtreeExampleSub
   m_EditorClassIdentifier: 
-  rootNode: {fileID: -3807608494041042885}
+  rootNode: {fileID: -1097403174093695077}
   nodes:
-  - {fileID: -3807608494041042885}
-  - {fileID: -7639251979923295638}
-  - {fileID: -7954395546828384528}
-  - {fileID: 822744548588997364}
-  - {fileID: -7035516468689213043}
-  - {fileID: 4779996925307932341}
+  - {fileID: -1097403174093695077}
+  - {fileID: -3297239115332773467}
+  - {fileID: -2720860665856187830}
+  - {fileID: 6892321940944733366}
+  - {fileID: 2209656077179077914}
   bTagParameters: []
   blackboard:
     properties:
     - property:
-        rid: 6199964246474752076
+        rid: 6199964247437344776
+      parentName: 
+    - property:
+        rid: 6199964247437344777
       parentName: 
     runtime: 0
   references:
     version: 2
     RefIds:
-    - rid: 6199964246474752076
-      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+    - rid: 6199964247437344776
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
-        PropertyName: Blackboard1
-        value: Main blackboard
---- !u!114 &822744548588997364
+        PropertyName: WillBeOvewriten
+        value: WillBeOvewriten
+    - rid: 6199964247437344777
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
+      data:
+        PropertyName: Sub Blackboard
+        value: Sub Blackboard
+--- !u!114 &2209656077179077914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,18 +157,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 71ef0232-6fc0-4c5e-8aeb-7a1df75e3d68
-  position: {x: -150, y: 233}
+  guid: 00570770-876b-4860-ac84-973caec14480
+  position: {x: 150, y: 221}
   gameObject: {fileID: 0}
   useMemory: 0
   description: 
-  parent: {fileID: -7639251979923295638}
+  parent: {fileID: -3297239115332773467}
   tree: {fileID: 11400000}
   blackboard:
     properties:
     - property:
-        rid: 6199964247437344771
-      parentName: 
+        rid: 6199964247437344775
+      parentName: Sub Blackboard
     runtime: 0
   onStart: 0
   onStop: 0
@@ -196,12 +176,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 6199964247437344771
-      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+    - rid: 6199964247437344775
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
         PropertyName: message
-        value: MainTree
---- !u!114 &4779996925307932341
+        value: 
+--- !u!114 &6892321940944733366
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,41 +190,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19c3cbfd3e813e4b8540c9942cca18c, type: 3}
-  m_Name: SubtreeNode
+  m_Script: {fileID: 11500000, guid: 0f60e6d8f07f1654ea889f2a1e419697, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: c49b1a5d-8510-4909-abb4-2e4529cfcc9c
-  position: {x: 166, y: 233}
+  guid: fff35e72-0f20-4784-a80f-8d7010ea12b4
+  position: {x: 0, y: 221}
   gameObject: {fileID: 0}
-  useMemory: 1
+  useMemory: 0
   description: 
-  parent: {fileID: -7639251979923295638}
+  parent: {fileID: -3297239115332773467}
   tree: {fileID: 11400000}
   blackboard:
     properties:
     - property:
-        rid: 6199964247437344787
-      parentName: 
-    - property:
-        rid: 6199964247437344788
-      parentName: 
+        rid: 6199964247437344774
+      parentName: WillBeOvewriten
     runtime: 0
-  subtree: {fileID: 11400000, guid: 39bb8c7d1aecc51488378dabe6a8e305, type: 2}
-  passValue: 0000
-  autoRemapOnAssign: 0
-  propertiesDontDeleteOnValidate: []
+  onStart: 0
+  onStop: 0
+  onUpdate: 1
   references:
     version: 2
     RefIds:
-    - rid: 6199964247437344787
-      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
+    - rid: 6199964247437344774
+      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTrees, asm: HIAAC.BehaviorTree}
       data:
-        PropertyName: WillBeOvewriten
-        value: 
-    - rid: 6199964247437344788
-      type: {class: StringBlackboardProperty, ns: HIAAC.BehaviorTree, asm: HIAAC.BehaviorTree}
-      data:
-        PropertyName: Sub Blackboard
-        value: 
+        PropertyName: message
+        value: WillBeOvewrite
