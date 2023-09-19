@@ -1,4 +1,4 @@
-# `Behavior Trees`
+# Behavior Trees
 
 Unity implementation of basic behavior trees and extensions such as utility and external trees.
 
@@ -18,9 +18,14 @@ See more projects from the group [here](https://github.com/brgsil/RepoOrganizer)
 
 ## Installation / Usage
 
-Latest release area avaiable in the [Releases](https://github.com/H-IAAC/BehaviorTrees/releases) page.
 
-Can also be installed using git url in `Package Manager`: https://github.com/H-IAAC/BehaviorTrees.git?path=BehaviorTrees/Assets/BehaviorTrees
+### Installation
+
+- Open the `Package Manager`
+- Click the add **+** button in the status bar, select "`Add Package from git URL...`"
+- Enter the url: `https://github.com/H-IAAC/BehaviorTrees.git?path=BehaviorTrees`
+
+### Usage
 
 - Create a new `Behavior Tree` in "Create\Behavior Tree\Behavior Tree"
 - Double click for open the editor.
