@@ -8,6 +8,7 @@
         "email": "hiaac@unicamp.br",
         "url": "https://hiaac.unicamp.br/"
     },
+    "license": "LGPL-3.0-only",
     "keywords": [
         "behavior tree",
         "ai",
@@ -15,7 +16,6 @@
         "npc"
     ],
     "documentationUrl": "https://github.com/H-IAAC/BehaviorTrees",
-    "license": "",
     "samples": [
         {
             "displayName": "Basic samples",
