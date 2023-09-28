@@ -45,7 +45,12 @@ namespace HIAAC.BehaviorTrees
         /// <param name="name">Name of the property. Can be changed internally for avoiding duplicates.</param>
         /// <returns>Created property.</returns>
         public BlackboardProperty CreateProperty(Type type, string name)
-        {
+        { 
+            if(!type.IsSubclassOf(typeof(BlackboardProperty)))
+            {
+                throw new Exception("BlackboardProperty type must inherit from BlackboardProperty");
+            }
+
             //Avoid duplicated name
             while (properties.Any(x => x.Name == name))
             {
