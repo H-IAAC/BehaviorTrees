@@ -1,17 +1,39 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using HIAAC.BehaviorTrees.SmartAreas;
+
 
 namespace HIAAC.BehaviorTrees
 {
     public class RequestBehaviorNode : SubtreeNode
     {
+        [SerializeField] bool fromArea;
+
         public RequestBehaviorNode() : base()
         {
             CreateProperty(typeof(TagProviderProperty), "tagProvider");
             passValue.Add(false);
 
             propertiesDontDeleteOnValidate.Add("tagProvider");
+        }
+
+        void OnValidate()
+        {
+            if(fromArea)
+            {
+                if(HasProperty("tagProvider"))
+                {
+                    DeleteProperty("tagProvider");
+                }
+            }
+            else
+            {
+                if(!HasProperty("tagProvider"))
+                {
+                    CreateProperty(typeof(TagProviderProperty), "tagProvider");
+                }
+            }
         }
 
         public override BehaviorTree Subtree
@@ -38,25 +60,26 @@ namespace HIAAC.BehaviorTrees
 
         BehaviorTag requestTag()
         {
-            object providerObj = GetPropertyValue("tagProvider");
-
-            IBTagProvider provider = providerObj as IBTagProvider;
-
-            if (provider == null)
+            List<BehaviorTag> tags;
+            if (fromArea)
             {
-                return null;
+                tags = AreaManager.instance.GetTags(tree.bTagParameters, gameObject.transform.position);
             }
-
-            List<BehaviorTag> tags = provider.ProvideTags(tree.bTagParameters);
-            foreach (BehaviorTag tag in tags)
+            else
             {
-                if (BTagParameter.IsCompatible(tag.parameters, minimumValueParameters, maximumValueParameters))
+                object providerObj = GetPropertyValue("tagProvider");
+
+                IBTagProvider provider = providerObj as IBTagProvider;
+
+                if (provider == null)
                 {
-                    return tag;
+                    return null;
                 }
+                tags = provider.ProvideTags(tree.bTagParameters);
             }
 
-            return null;
+            
+            return IBTagProvider.GetFirstCompatible(tags, minimumValueParameters, maximumValueParameters);
         }
 
         public override void OnStart()

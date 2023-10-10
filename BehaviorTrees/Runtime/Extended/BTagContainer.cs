@@ -22,6 +22,14 @@ namespace HIAAC.BehaviorTrees
         public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters)
         {
             List<BehaviorTag> availableTags = new();
+
+            ProvideTags(agentParameters, availableTags);
+
+            return availableTags;
+        }
+
+        public void ProvideTags(List<BTagParameter> agentParameters, List<BehaviorTag> availableTags)
+        {
             foreach (BehaviorTag tag in tags)
             {
                 if (tag.IsCompatible(agentParameters))
@@ -34,8 +42,6 @@ namespace HIAAC.BehaviorTrees
             {
                 tags.Shuffle();
             }
-
-            return availableTags;
         }
 
         void OnEnable()
