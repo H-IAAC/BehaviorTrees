@@ -24,7 +24,6 @@ namespace HIAAC.BehaviorTrees
             List<BehaviorTag> availableTags = new();
 
             ProvideTags(agentParameters, availableTags);
-
             return availableTags;
         }
 

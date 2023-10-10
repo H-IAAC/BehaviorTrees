@@ -10,7 +10,8 @@ namespace HIAAC.BehaviorTrees.SmartAreas
     {
         List<Collider> colliders = new();
 
-        [SerializeReference] BTagContainer tagContainer;
+        [SerializeReference]
+        public BTagContainer tagContainer;
 
         [SerializeField] int priority;
 
