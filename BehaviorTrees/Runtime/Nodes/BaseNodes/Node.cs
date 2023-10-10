@@ -260,6 +260,11 @@ namespace HIAAC.BehaviorTrees
             return blackboard.HasProperty(name);
         }
 
+        public void DeleteProperty(string name)
+        {
+            blackboard.DeleteProperty(name);
+        }
+
 
         // To override // ----------------------------------------------------- //
         

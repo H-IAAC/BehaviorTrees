@@ -196,5 +196,19 @@ namespace HIAAC.BehaviorTrees
 
         }
 
+        public void DeleteProperty(string name)
+        {
+#if UNITY_EDITOR
+            Undo.RecordObject(baseObject, "Behavior Tree (DeleteTreeProperty)");
+#endif  
+            int index = properties.FindIndex(x => x.Name == name);
+            properties.RemoveAt(index);
+
+#if UNITY_EDITOR
+            AssetDatabase.SaveAssets();
+#endif
+
+        }            
+
     }
 }
