@@ -50,8 +50,6 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 }
             }
 
-            Debug.Log($"{areas.Count}|{tags.Count}");
-
             return tags;
         }
 

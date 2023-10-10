@@ -88,7 +88,6 @@ namespace HIAAC.BehaviorTrees
             {
                 BehaviorTag newTag = requestTag();
 
-
                 if (newTag == null)
                 {
                     if (!overrideMode)

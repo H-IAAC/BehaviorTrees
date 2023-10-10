@@ -30,7 +30,7 @@ namespace HIAAC.BehaviorTrees
 
         public static BehaviorTag GetFirstCompatible(List<BehaviorTag> tags, List<BTagParameter> minimumValueParameters, List<BTagParameter> maximumValueParameters)
         {
-            for(int i = tags.Count-1; i>=0; i--)
+            for(int i = 0; i<tags.Count; i++)
             {
                 BehaviorTag tag = tags[i];
                 if (BTagParameter.IsCompatible(tag.parameters, minimumValueParameters, maximumValueParameters))
