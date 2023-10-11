@@ -47,7 +47,7 @@ namespace HIAAC.BehaviorTrees
         /// <exception cref="ArgumentException">If property does not exist.</exception>
         public T GetBlackboardProperty<T>(string name)
         {
-            return tree.blackboard.GetPropertyValue<T>(name);
+            return tree.GetPropertyValue<T>(name);
         }
 
         /// <summary>

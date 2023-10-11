@@ -191,13 +191,11 @@ namespace HIAAC.BehaviorTrees
 
         public void SetPropertyValue<T>(string name, T value)
         {
-            name = GetType().Name + "/" + name;
             blackboard.GetProperty(name).Value = value;
         }
 
         public T GetPropertyValue<T>(string name, bool forceNodeProperty = false)
         {
-            name = GetType().Name + "/" + name;
             return blackboard.GetPropertyValue<T>(name, forceNodeProperty);
         }
         

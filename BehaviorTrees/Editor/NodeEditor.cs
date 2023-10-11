@@ -115,8 +115,11 @@ namespace HIAAC.BehaviorTrees
             if (node.blackboard.properties.Count > 0)
             {
                 showProperties = EditorGUILayout.BeginFoldoutHeaderGroup(showProperties, "Properties");
+                EditorGUILayout.EndFoldoutHeaderGroup();
                 if (showProperties)
                 {
+                    EditorGUI.indentLevel++;
+
                     string[] treeBlackboardProperties = getTreeBlackboardProperties(true);
 
                     for (int i = 0; i < node.blackboard.properties.Count; i++)
@@ -197,8 +200,10 @@ namespace HIAAC.BehaviorTrees
 
                         EditorGUILayout.Space();
                     }
+
+                    EditorGUI.indentLevel--;
                 }
-                EditorGUILayout.EndFoldoutHeaderGroup();
+                
 
                 //Autoremap button if subtree and not request
                 if (subtreeNode && !requestBehaviorNode)
