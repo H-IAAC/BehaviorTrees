@@ -99,6 +99,11 @@ namespace HIAAC.BehaviorTrees
             return treeState;
         }
 
+        public void ResetStates()
+        {
+            nodes.ForEach(node => { node.started = false; node.state = NodeState.Runnning; });
+        }
+
         /// <summary>
         /// Get the tree utility value (same as the root node).
         /// </summary>
@@ -180,6 +185,11 @@ namespace HIAAC.BehaviorTrees
             return blackboard.CreateProperty(type);
         }
 
+        public BlackboardProperty CreateProperty(Type type, string name)
+        {
+            return blackboard.CreateProperty(type, name);
+        }
+
         /// <summary>
         /// Deletes BlackboardProperty of the tree.
         /// </summary>
@@ -197,6 +207,11 @@ namespace HIAAC.BehaviorTrees
         public T GetPropertyValue<T>(string name, bool forceNodeProperty = false)
         {
             return blackboard.GetPropertyValue<T>(name, forceNodeProperty);
+        }
+
+        public bool HasProperty(string name)
+        {
+            return blackboard.HasProperty(name);
         }
         
 
