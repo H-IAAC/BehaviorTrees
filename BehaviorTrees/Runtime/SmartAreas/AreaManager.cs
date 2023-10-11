@@ -18,19 +18,64 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
         public void Register(SmartArea area)
         {
-            if(areas.Contains(area))
-            {
-                return;
-            }
-
             int index = areas.BinarySearch(area, new SmartAreaComparer());
+			if(index<0)
+			{
+				index = ~index;
+			}
+			
+			int insertIndex = index;
 
-            if(index<0)
-            {
-                index = ~index;
-            }
+            //Search for the area
+            bool found = false;
+			if(areas.Count > index)
+			{
+				if(areas[index] == area)
+				{
+					found = true;
+				}
+				else
+				{
+					if(areas[index].Priority > area.Priority && index != 0 && areas[index-1].Priority == area.Priority )
+					{
+						index --;
+					}
+					
+					int baseIndex = index;
+					
+                    //Areas before baseIndex
+					while(index >=0 && areas[index].Priority == area.Priority)
+					{
+						if(areas[index] == area)
+						{
+							found = true;
+							break;
+						}
+						index --;
+					}
+					
+					if(!found)
+					{
+						index = baseIndex;
 
-            areas.Insert(index, area);
+                        //Areas after baseIndex
+						while(areas.Count > index && areas[index].Priority == area.Priority)
+						{
+							if(areas[index] == area)
+							{
+								found = true;
+								break;
+							}
+							index ++;
+						}
+					}
+				}
+			}
+			
+			if(!found)
+			{
+				areas.Insert(insertIndex, area);
+			}
         }
 
         public void Unregister(SmartArea area)
@@ -68,7 +113,12 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 return -1;
             }
 
-            return 0;
+            if(x == y)
+            {
+                return 0;
+            }
+
+            return -1;
         }
     }
 }
