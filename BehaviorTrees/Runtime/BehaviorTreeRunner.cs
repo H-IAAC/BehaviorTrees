@@ -15,8 +15,11 @@ namespace HIAAC.BehaviorTrees
         /// </summary>
         void Start()
         {
-            tree = tree.Clone();
-            tree.Bind(gameObject);
+            if(tree != null)
+            {
+                tree = tree.Clone();
+                tree.Bind(gameObject);
+            }
         }
 
         /// <summary>
@@ -24,7 +27,10 @@ namespace HIAAC.BehaviorTrees
         /// </summary>
         void Update()
         {
-            tree.Update();
+            if(tree != null)
+            {
+                tree.Update();
+            }
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             bool showClone = false;
 
-            if(area.tagContainer != null)
+            if(area.TagContainer != null)
             {
                 showClone = true;
             }
@@ -52,7 +52,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             EditorGUI.ObjectField(fieldRect, tagContainerProperty, Styles.container);
             EditorGUI.PrefixLabel(labelRect, Styles.container);
-            area.tagContainer = (BTagContainer)EditorGUI.ObjectField(fieldRect, area.tagContainer, typeof(BTagContainer), false);
+            area.TagContainer = (BTagContainer)EditorGUI.ObjectField(fieldRect, area.TagContainer, typeof(BTagContainer), false);
 
             string targetName = area.name + " TagContainer";
             Scene scene = area.gameObject.scene;
@@ -62,17 +62,17 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 
 
                 BTagContainer asset = CreateAssetAt<BTagContainer>(scene, targetName);
-                area.tagContainer = asset;
+                area.TagContainer = asset;
             }
             if (showClone && GUI.Button(buttonCopyRect, Styles.cloneLabel, EditorStyles.miniButtonRight))
             {
-                BTagContainer newContainer = CreateAssetAt<BTagContainer>(scene, targetName, area.tagContainer);
-                area.tagContainer = newContainer;
+                BTagContainer newContainer = CreateAssetAt<BTagContainer>(scene, targetName, area.TagContainer);
+                area.TagContainer = newContainer;
 
 
             }
 
-            if(area.tagContainer != null)
+            if(area.TagContainer != null)
             {
                 showContainer = EditorGUILayout.BeginFoldoutHeaderGroup(showContainer, "Container properties");
                 EditorGUILayout.EndFoldoutHeaderGroup();
@@ -81,7 +81,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 {
                     EditorGUI.indentLevel++;
 
-                    Editor containerWindows = Editor.CreateEditor(area.tagContainer);
+                    Editor containerWindows = Editor.CreateEditor(area.TagContainer);
                     containerWindows.OnInspectorGUI();
 
                     EditorGUI.indentLevel--;

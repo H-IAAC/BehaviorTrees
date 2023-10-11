@@ -7,41 +7,14 @@ namespace HIAAC.BehaviorTrees.SmartAreas
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     [DisallowMultipleComponent]
-    public class SmartArea : MonoBehaviour, IBTagProvider
+    public class SmartArea : BehaviorTreeRunner, IBTagProvider
     {
         List<Collider> colliders = new();
 
         [SerializeReference]
-        public BTagContainer tagContainer;
+        BTagContainer tagContainer;
 
         [SerializeField] int priority;
-
-        [SerializeField] BehaviorTree onEnterTree;
-        [SerializeField] BehaviorTree onExitTree;
-
-        public BehaviorTree OnEnterTree
-        {
-            get
-            {
-                if(onEnterTree.Runtime)
-                {
-                    return onEnterTree;
-                }
-                return null;
-            }
-        }
-
-        public BehaviorTree OnExitTree
-        {
-            get
-            {
-                if(onExitTree.Runtime)
-                {
-                    return onExitTree;
-                }
-                return null;
-            }
-        }
 
         public int Priority
         {
@@ -53,6 +26,24 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             get
             {
                 return gameObject.name;
+            }
+        }
+
+        public BTagContainer TagContainer
+        {
+            get
+            {
+                return tagContainer;
+            }
+
+            set
+            {
+                tagContainer = value;
+
+                if(tree != null)
+                {
+                    tree.SetPropertyValue("tagContainer", tagContainer);
+                }
             }
         }
 
@@ -88,18 +79,6 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             colliders.ForEach(collider => collider.isTrigger = true);
 
             AreaManager.instance.Register(this);
-
-            if(onEnterTree != null)
-            {
-                onEnterTree = onEnterTree.Clone();
-                onEnterTree.Bind(gameObject);
-            }
-
-            if(onExitTree != null)
-            {
-                onExitTree = onExitTree.Clone();
-                onExitTree.Bind(gameObject);
-            }
         }
 
         void OnDisable()
@@ -127,7 +106,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
         void OnTriggerEnter(Collider other)
         {
-            if(onEnterTree == null)
+            if(tree == null)
             {
                 return;
             }
@@ -136,15 +115,16 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             if(otherGO != null)
             {
-                onEnterTree.SetPropertyValue("lastEnteredObject", otherGO);
-                onEnterTree.ResetStates();
-                onEnterTree.Update();
+                tree.SetPropertyValue("lastEnteredObject", otherGO);
+                tree.SetPropertyValue("objectEntered", true);
+                tree.Update();
+                tree.SetPropertyValue("objectEntered", false);
             }
         }
 
         void OnTriggerExit(Collider other)
         {
-            if(onExitTree == null)
+            if(tree == null)
             {
                 return;
             }
@@ -153,9 +133,10 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             if(otherGO != null)
             {
-                onExitTree.SetPropertyValue("lastExitedObject", otherGO);
-                onExitTree.ResetStates();
-                onExitTree.Update();
+                tree.SetPropertyValue("lastExitedObject", otherGO);
+                tree.SetPropertyValue("objectExited", true);
+                tree.Update();
+                tree.SetPropertyValue("objectExited", false);
             }
         }
 
@@ -169,20 +150,32 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
 
-            if(onEnterTree != null)
+            if(tree != null)
             {
-                if(!onEnterTree.HasProperty("lastEnteredObject"))
+                string[] goNames = { "lastEnteredObject", "lastExitedObject" };
+                foreach (string propertyName in goNames)
                 {
-                    onEnterTree.CreateProperty(typeof(GameObjectBlackboardProperty), "lastEnteredObject");
+                    if (!tree.HasProperty(propertyName))
+                    {
+                        tree.CreateProperty(typeof(GameObjectBlackboardProperty), propertyName);
+                    }
                 }
-            }
 
-            if(onExitTree != null)
-            {
-                if(!onExitTree.HasProperty("lastExitedObject"))
+                string[] boolNames = {"objectEntered", "objectExited"};
+                foreach (string propertyName in boolNames)
                 {
-                    onExitTree.CreateProperty(typeof(GameObjectBlackboardProperty), "lastExitedObject");
+                    if (!tree.HasProperty(propertyName))
+                    {
+                        tree.CreateProperty(typeof(BoolBlackboardProperty), propertyName);
+                    }
                 }
+
+                if(!tree.HasProperty("tagContainer"))
+                {
+                    tree.CreateProperty(typeof(BTagContainerProperty), "tagContainer");
+                }
+
+                tree.SetPropertyValue("tagContainer", tagContainer);
             }
         }
         
