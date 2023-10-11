@@ -66,7 +66,7 @@ namespace HIAAC.BehaviorTrees
             }
         }
 
-        void OnEnable()
+        void OnDisable()
         {
             users.Clear();
         }
