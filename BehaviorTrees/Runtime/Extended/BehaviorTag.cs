@@ -17,7 +17,8 @@ namespace HIAAC.BehaviorTrees
     [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tag")]
     public class BehaviorTag : ScriptableObject
     {
-        [Tooltip("Tag's tree.")] public BehaviorTree tree;
+        [Tooltip("Tag's tree.")][SerializeField] BehaviorTree tree;
+        [SerializeField] Optional<uint> maxUsers = new(){value=0};
 
         [Tooltip("What the node should do when the tree success.")] public TagLifecycleType onSuccess = TagLifecycleType.HOLD;
         [Tooltip("What the node should do when the tree fails.")] public TagLifecycleType onFailure = TagLifecycleType.DROP;
@@ -28,6 +29,19 @@ namespace HIAAC.BehaviorTrees
         [Tooltip("Minimum parameters the requesting agent should have to use the tag.")] public List<BTagParameter> minimumValueParameters = new();
         [Tooltip("Maximum parameters the requesting agent should have to use the tag.")] public List<BTagParameter> maximumValueParameters = new();
 
+        List<GameObject> users = new();
+
+        public BehaviorTree RegisterUser(GameObject user)
+        {
+            users.Add(user);
+            return tree;
+        }
+
+        public void UnregisterUser(GameObject user)
+        {
+            users.Remove(user);
+        }
+
         /// <summary>
         /// Check if tag is compatible with parameters.
         /// </summary>
@@ -35,6 +49,11 @@ namespace HIAAC.BehaviorTrees
         /// <returns>True if compatible.</returns>
         public bool IsCompatible(List<BTagParameter> parameters)
         {
+            if(maxUsers.enabled && maxUsers <= users.Count)
+            {
+                return false;
+            }
+
             return BTagParameter.IsCompatible(parameters, minimumValueParameters, maximumValueParameters);
         }
 
@@ -45,6 +64,11 @@ namespace HIAAC.BehaviorTrees
                 Debug.LogWarning("Cannot override on running. Changing to HOLD");
                 onRunning = TagLifecycleType.HOLD;
             }
+        }
+
+        void OnEnable()
+        {
+            users.Clear();
         }
     }
 }

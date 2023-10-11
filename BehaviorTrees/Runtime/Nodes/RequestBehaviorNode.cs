@@ -86,6 +86,12 @@ namespace HIAAC.BehaviorTrees
         {
             if (currentTag == null || overrideMode)
             {
+                BehaviorTag oldTag = currentTag;
+                if(oldTag != null)
+                {
+                    oldTag.UnregisterUser(gameObject);
+                }
+
                 BehaviorTag newTag = requestTag();
 
                 if (newTag == null)
@@ -103,13 +109,14 @@ namespace HIAAC.BehaviorTrees
 
                 if (currentTag != null)
                 {
-                    base.Subtree = currentTag.tree;
+                    base.Subtree = currentTag.RegisterUser(gameObject);
                 }
                 else
                 {
                     base.Subtree = null;
                 }
 
+            
             }
 
             base.OnStart();
@@ -120,6 +127,7 @@ namespace HIAAC.BehaviorTrees
             switch (lifecyleType)
             {
                 case TagLifecycleType.DROP:
+                    currentTag.UnregisterUser(gameObject);
                     currentTag = null;
                     break;
                 case TagLifecycleType.HOLD:

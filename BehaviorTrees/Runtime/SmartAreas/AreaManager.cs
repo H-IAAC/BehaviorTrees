@@ -9,7 +9,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
         private static Lazy<AreaManager> _instance = new (() => new AreaManager());
         public static AreaManager instance => _instance.Value;
         
-        List<SmartArea> areas;
+        List<SmartArea> areas; //Change for priority tree?
 
         private AreaManager()
         {
@@ -27,6 +27,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 			int insertIndex = index;
 
             //Search for the area
+            //BinarySearch area may be other area with same priority
             bool found = false;
 			if(areas.Count > index)
 			{
@@ -113,12 +114,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 return -1;
             }
 
-            if(x == y)
-            {
-                return 0;
-            }
-
-            return -1;
+            return 0;
         }
     }
 }
