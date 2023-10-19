@@ -45,6 +45,11 @@ namespace HIAAC.BehaviorTrees
 
         public void AddTag(BehaviorTag tag)
         {
+            if(tag.container)
+            {
+                tag.container.RemoveTag(tag);
+            }
+            
             tag.container = this;
 
             if(!tags.Contains(tag))
