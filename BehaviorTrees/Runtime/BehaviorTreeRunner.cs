@@ -25,7 +25,7 @@ namespace HIAAC.BehaviorTrees
         /// <summary>
         /// Run the tree
         /// </summary>
-        void Update()
+        protected virtual void Update()
         {
             if(tree != null)
             {

@@ -20,6 +20,8 @@ namespace HIAAC.BehaviorTrees
         [Tooltip("Tag's tree.")][SerializeField] BehaviorTree tree;
         [SerializeField] Optional<uint> maxUsers = new(){value=0};
 
+        [Tooltip("Number of users to track if registered or unregistered.")][SerializeField] int maxTrackedUsers = 10;
+
         [Tooltip("What the node should do when the tree success.")] public TagLifecycleType onSuccess = TagLifecycleType.HOLD;
         [Tooltip("What the node should do when the tree fails.")] public TagLifecycleType onFailure = TagLifecycleType.DROP;
         [Tooltip("What the node should do when the tree returns Running.")] public TagLifecycleType onRunning = TagLifecycleType.HOLD;
@@ -32,16 +34,31 @@ namespace HIAAC.BehaviorTrees
         [HideInInspector] public BTagContainer container;
 
         List<GameObject> users = new();
+        [HideInInspector] public List<GameObject> newUsers = new();
+        [HideInInspector] public List<GameObject> droppedUsers = new();
 
         public BehaviorTree RegisterUser(GameObject user)
         {
             users.Add(user);
+
+            if(newUsers.Count == maxTrackedUsers)
+            {
+                newUsers.RemoveAt(0);
+            }
+            newUsers.Add(user);
+            
             return tree;
         }
 
         public void UnregisterUser(GameObject user)
         {
             users.Remove(user);
+
+            if(droppedUsers.Count == maxTrackedUsers)
+            {
+                droppedUsers.RemoveAt(0);
+            }
+            droppedUsers.Add(user);
         }
 
         /// <summary>

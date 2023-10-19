@@ -160,12 +160,14 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             }
         }
 
-        void Update()
+        protected override void Update()
         {
             if(tree)
             {
                 tagContainer = tree.GetPropertyValue<BTagContainer>("tagContainer");
             }
+
+            base.Update();
         }
 
 

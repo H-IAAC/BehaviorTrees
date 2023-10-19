@@ -87,36 +87,31 @@ namespace HIAAC.BehaviorTrees
             if (currentTag == null || overrideMode)
             {
                 BehaviorTag oldTag = currentTag;
-                if(oldTag != null)
-                {
-                    oldTag.UnregisterUser(gameObject);
-                }
-
                 BehaviorTag newTag = requestTag();
 
-                if (newTag == null)
+                if (overrideMode)
                 {
-                    if (!overrideMode)
+                    if (newTag == null || newTag == currentTag)
                     {
+                        return;
+                    }
+
+                    if (oldTag != null)
+                    {
+                        oldTag.UnregisterUser(gameObject);
+                    }
+
+                    base.Subtree = newTag.RegisterUser(gameObject);
+                    currentTag = newTag;
+                }
+                else //Current tag == null
+                {
+                    if (newTag != null)
+                    {
+                        base.Subtree = newTag.RegisterUser(gameObject);
                         currentTag = newTag;
                     }
                 }
-                else
-                {
-                    currentTag = newTag;
-                    overrideMode = false;
-                }
-
-                if (currentTag != null)
-                {
-                    base.Subtree = currentTag.RegisterUser(gameObject);
-                }
-                else
-                {
-                    base.Subtree = null;
-                }
-
-            
             }
 
             base.OnStart();
