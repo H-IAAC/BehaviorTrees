@@ -123,9 +123,8 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             if(otherGO != null)
             {
                 tree.SetPropertyValue("lastEnteredObject", otherGO);
-                tree.SetPropertyValue("objectEntered", true);
                 tree.Update();
-                tree.SetPropertyValue("objectEntered", false);
+                tree.SetPropertyValue<GameObjectBlackboardProperty>("lastEnteredObject", null);
             }
         }
 
@@ -156,9 +155,8 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             if(otherGO != null)
             {
                 tree.SetPropertyValue("lastExitedObject", otherGO);
-                tree.SetPropertyValue("objectExited", true);
                 tree.Update();
-                tree.SetPropertyValue("objectExited", false);
+                tree.SetPropertyValue<GameObjectBlackboardProperty>("lastExitedObject", null);
             }
         }
 
@@ -188,15 +186,6 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                     if (!tree.HasProperty(propertyName))
                     {
                         tree.CreateProperty(typeof(GameObjectBlackboardProperty), propertyName);
-                    }
-                }
-
-                string[] boolNames = {"objectEntered", "objectExited"};
-                foreach (string propertyName in boolNames)
-                {
-                    if (!tree.HasProperty(propertyName))
-                    {
-                        tree.CreateProperty(typeof(BoolBlackboardProperty), propertyName);
                     }
                 }
 

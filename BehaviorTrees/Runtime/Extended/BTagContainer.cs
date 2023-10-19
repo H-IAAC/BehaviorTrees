@@ -9,7 +9,7 @@ namespace HIAAC.BehaviorTrees
     [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tag Container")]
     public class BTagContainer : ScriptableObject, IBTagProvider
     {
-        [Tooltip("Tags the container can provide.")] List<BehaviorTag> tags;
+        [Tooltip("Tags the container can provide.")] List<BehaviorTag> tags = new();
         [Tooltip("If should randomize the tags order after providing one.")] public bool randomizeOnProvide;
         [Tooltip("If should randomize the tags order on the enable.")] public bool randomizeOnEnable = false;
 
@@ -49,7 +49,7 @@ namespace HIAAC.BehaviorTrees
             {
                 tag.container.RemoveTag(tag);
             }
-            
+
             tag.container = this;
 
             if(!tags.Contains(tag))
