@@ -100,7 +100,7 @@ namespace HIAAC.BehaviorTrees
 
             if (index < 0)
             {
-                throw new ArgumentException("Property does not exist in node.");
+                throw new ArgumentException($"Property {name} does not exist in node/tree.");
             }
 
             string parentName = properties[index].parentName;

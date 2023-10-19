@@ -16,6 +16,8 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
         [SerializeField] int priority;
 
+        [HideInInspector] public List<SmartArea> children = new();
+
         public int Priority
         {
             get { return priority; }
@@ -104,6 +106,11 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
         }
 
+        void FixedUpdate()
+        {
+            children.Clear();
+        }
+
         void OnTriggerEnter(Collider other)
         {
             if(tree == null)
@@ -119,6 +126,21 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 tree.SetPropertyValue("objectEntered", true);
                 tree.Update();
                 tree.SetPropertyValue("objectEntered", false);
+            }
+        }
+
+        void OnTriggerStay(Collider other)
+        {
+            SmartArea otherSA = other.gameObject.GetComponent<SmartArea>();
+
+            if(!otherSA)
+            {
+                return;
+            }
+
+            if(otherSA.Priority <= Priority && !children.Contains(otherSA))
+            {
+                children.Add(otherSA);
             }
         }
 
