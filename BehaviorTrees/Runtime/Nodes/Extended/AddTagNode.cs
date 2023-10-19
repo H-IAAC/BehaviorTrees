@@ -25,10 +25,7 @@ namespace HIAAC.BehaviorTrees
 
             foreach(BehaviorTag tag in tags)
             {
-                if(!container.tags.Contains(tag))
-                {
-                    container.tags.Add(tag);
-                }
+                container.AddTag(tag);
             }
 
             return NodeState.Success;

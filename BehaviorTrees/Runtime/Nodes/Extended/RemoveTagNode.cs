@@ -25,7 +25,7 @@ namespace HIAAC.BehaviorTrees
 
             foreach(BehaviorTag tag in tags)
             {
-                container.tags.Remove(tag);
+                container.RemoveTag(tag);
             }
 
             return NodeState.Success;

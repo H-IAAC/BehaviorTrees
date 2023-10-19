@@ -29,6 +29,8 @@ namespace HIAAC.BehaviorTrees
         [Tooltip("Minimum parameters the requesting agent should have to use the tag.")] public List<BTagParameter> minimumValueParameters = new();
         [Tooltip("Maximum parameters the requesting agent should have to use the tag.")] public List<BTagParameter> maximumValueParameters = new();
 
+        [HideInInspector] public BTagContainer container;
+
         List<GameObject> users = new();
 
         public BehaviorTree RegisterUser(GameObject user)
