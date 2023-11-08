@@ -28,7 +28,7 @@ namespace HIAAC.BehaviorTrees
         public override Node Clone()
         {
             DecoratorNode node = Instantiate(this);
-            node.child = child.Clone();
+            node.child = child?.Clone();
             node.guid = guid;
             return node;
         }

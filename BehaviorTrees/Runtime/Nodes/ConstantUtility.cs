@@ -28,7 +28,12 @@ namespace HIAAC.BehaviorTrees
 
         public override NodeState OnUpdate()
         {
-            return child.Update();
+            if(child)
+            {
+                return child.Update();
+            }
+            return NodeState.Failure;
+            
         }
 
 
