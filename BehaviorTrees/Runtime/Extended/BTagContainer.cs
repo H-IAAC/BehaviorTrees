@@ -73,11 +73,20 @@ namespace HIAAC.BehaviorTrees
             }
         }
 
-        void OnValidate()
+        public void OnValidate()
         {
-            foreach(BehaviorTag tag in tags)
+            for(int i = tags.Count-1; i>=0; i--)
             {
-                tag.container = this;
+                BehaviorTag tag = tags[i];
+
+                if(!tag)
+                {
+                    tags.RemoveAt(i);
+                }
+                else
+                {
+                    tag.container = this;
+                }
             }
         }
     }

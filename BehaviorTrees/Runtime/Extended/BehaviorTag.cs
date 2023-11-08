@@ -31,11 +31,45 @@ namespace HIAAC.BehaviorTrees
         [Tooltip("Minimum parameters the requesting agent should have to use the tag.")] public List<BTagParameter> minimumValueParameters = new();
         [Tooltip("Maximum parameters the requesting agent should have to use the tag.")] public List<BTagParameter> maximumValueParameters = new();
 
+        [SerializeField] public Blackboard blackboard;
+        [HideInInspector] public List<bool> passValue;
+
         [HideInInspector] public BTagContainer container;
 
         List<GameObject> users = new();
         [HideInInspector] public List<GameObject> newUsers = new();
         [HideInInspector] public List<GameObject> droppedUsers = new();
+
+        BehaviorTree runtimeTree;
+
+        public BehaviorTag()
+        {
+            blackboard = new(this);
+        }
+
+        public BehaviorTree RuntimeTree
+        {   
+            get
+            {
+                if(runtimeTree == null)
+                {
+                    runtimeTree = Instantiate(tree);
+
+                    //Copy properties to runtimeTree
+                    for (int i = 0; i < runtimeTree.blackboard.properties.Count; i++)
+                    {
+                        if (passValue[i])
+                        {
+                            BlackboardProperty property = runtimeTree.blackboard.properties[i].property;
+                            property.Value = blackboard.GetPropertyValue<object>(property.PropertyName);
+                        }
+
+                    }
+                }
+
+                return runtimeTree;
+            }
+        }
 
         public BehaviorTree RegisterUser(GameObject user)
         {
@@ -47,7 +81,7 @@ namespace HIAAC.BehaviorTrees
             }
             newUsers.Add(user);
             
-            return tree;
+            return RuntimeTree;
         }
 
         public void UnregisterUser(GameObject user)
@@ -82,6 +116,37 @@ namespace HIAAC.BehaviorTrees
             {
                 Debug.LogWarning("Cannot override on running. Changing to HOLD");
                 onRunning = TagLifecycleType.HOLD;
+            }
+
+            if(blackboard == null)
+            {
+                blackboard = new(this);
+                passValue = new();
+            }
+
+            if(tree == null)
+            {
+                return;
+            }
+
+            foreach(BlackboardOverridableProperty treeP in tree.blackboard.properties)
+            {
+                if(!blackboard.HasProperty(treeP.Name))
+                {
+                    blackboard.CreateProperty(treeP.property.GetType(), treeP.Name);
+                    passValue.Add(false);
+                }
+            }
+
+            for(int i = blackboard.properties.Count-1; i>= 0; i--)
+            {
+                BlackboardOverridableProperty tagP = blackboard.properties[i];
+
+                if (!tree.blackboard.HasProperty(tagP.Name))
+                {
+                    blackboard.properties.RemoveAt(i);
+                    passValue.RemoveAt(i);
+                }
             }
         }
 
