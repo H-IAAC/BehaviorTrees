@@ -75,6 +75,11 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             tagContainer.ProvideTags(agentParameters, tags);
         }
 
+        public void AddBehavior(BehaviorTag tag)
+        {
+            tagContainer.AddTag(tag);
+        }
+
         void OnEnable()
         {
             GetComponents(colliders);
@@ -179,6 +184,11 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
+
+            if(tagContainer)
+            {
+                tagContainer.OnValidate();
+            }
 
             if(tree != null)
             {

@@ -99,6 +99,28 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             return tags;
         }
 
+        public SmartArea GetArea(Vector3 position)
+        {
+            SmartArea resultArea = null;
+
+            foreach (SmartArea area in areas)
+            {
+                if (area.IsInside(position))
+                {
+                    if(resultArea == null)
+                    {
+                        resultArea = area;
+                    }
+                    else if (resultArea.Priority > area.Priority)
+                    {
+                        resultArea = area;
+                    }
+                }
+            }
+
+            return resultArea;
+        }
+
     }
 
     public class SmartAreaComparer : IComparer<SmartArea>
