@@ -4,21 +4,22 @@ using UnityEditor;
 using System.Reflection;
 using System;
 
-namespace HIAAC.BehaviorTrees
+namespace HIAAC.BehaviorTrees.SmartAreas
 {
-    [CustomEditor(typeof(BehaviorTag), true)]
-    public class BehaviorTagEditor : Editor
+
+    [CustomEditor(typeof(AddBehaviorToArea), true)]
+    public class AddBehaviorToAreaEditor : Editor
     {
         static readonly string[] noDraw = new string[]{"blackboard"};
 
         bool showProperties = false;
 
-        BehaviorTag bTag;
+        AddBehaviorToArea realTarget;
         
         public override void OnInspectorGUI()
         {
-            bTag = target as BehaviorTag;
-            bTag.OnValidate();
+            realTarget = target as AddBehaviorToArea;
+            realTarget.OnValidate();
 
             serializedObject.Update();
             DrawPropertiesExcluding(serializedObject, noDraw);
@@ -30,7 +31,7 @@ namespace HIAAC.BehaviorTrees
 
         void DrawBlackboard()
         {
-            if (bTag.blackboard.properties.Count > 0)
+            if (realTarget.blackboard.properties.Count > 0)
             {
                 showProperties = EditorGUILayout.BeginFoldoutHeaderGroup(showProperties, "Properties");
                 EditorGUILayout.EndFoldoutHeaderGroup();
@@ -40,14 +41,14 @@ namespace HIAAC.BehaviorTrees
 
                     //string[] treeBlackboardProperties = getTreeBlackboardProperties(true);
 
-                    for (int i = 0; i < bTag.blackboard.properties.Count; i++)
+                    for (int i = 0; i < realTarget.blackboard.properties.Count; i++)
                     {
                         EditorGUI.indentLevel++;
 
-                        BlackboardOverridableProperty property = bTag.blackboard.properties[i];
+                        BlackboardOverridableProperty property = realTarget.blackboard.properties[i];
                         if (property.property == null)
                         {
-                            Debug.LogWarning($"Property {i} of node {bTag.name} is null");
+                            Debug.LogWarning($"Property {i} of node {realTarget.name} is null");
                             continue;
                         }
 
@@ -57,7 +58,7 @@ namespace HIAAC.BehaviorTrees
                             
                             float oldWidth2 = EditorGUIUtility.labelWidth;
                             EditorGUIUtility.labelWidth = 100;
-                            bTag.passValue[i] = EditorGUILayout.Toggle("Pass Value", bTag.passValue[i]);
+                            realTarget.passValue[i] = EditorGUILayout.Toggle("Pass Value", realTarget.passValue[i]);
                             EditorGUIUtility.labelWidth = oldWidth2;
                         }
                         EditorGUILayout.EndHorizontal();

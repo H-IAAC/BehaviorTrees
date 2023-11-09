@@ -8,6 +8,14 @@ namespace HIAAC.BehaviorTrees.SmartAreas
     {
         [SerializeField] BehaviorTag bTag;
 
+        [SerializeField] public Blackboard blackboard;
+        [SerializeField][HideInInspector] public List<bool> passValue = new();
+
+        public AddBehaviorToArea()
+        {
+            blackboard = new(this);
+        }
+
         void Start()
         {
             if(bTag == null)
@@ -17,8 +25,47 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             BehaviorTag tagClone = Instantiate(bTag);
 
+            for(int i = 0; i<blackboard.properties.Count; i++)
+            {
+                BlackboardOverridableProperty thisP = blackboard.properties[i];
+
+                int index = tagClone.blackboard.properties.FindIndex(x => x.Name == thisP.Name);
+
+                tagClone.blackboard.properties[i].property.Value = thisP.property.Value;
+                tagClone.passValue[i] = passValue[i];
+            }
+
             SmartArea area = AreaManager.instance.GetArea(transform.position);
             area.AddBehavior(tagClone);    
+        }
+
+        public void OnValidate()
+        {
+
+            if(bTag == null)
+            {
+                return;
+            }
+
+            foreach(BlackboardOverridableProperty tagP in bTag.blackboard.properties)
+            {
+                if(!blackboard.HasProperty(tagP.Name))
+                {
+                    blackboard.CreateProperty(tagP.property.GetType(), tagP.Name);
+                    passValue.Add(false);
+                }
+            }
+
+            for(int i = blackboard.properties.Count-1; i>= 0; i--)
+            {
+                BlackboardOverridableProperty tagP = blackboard.properties[i];
+
+                if (!bTag.blackboard.HasProperty(tagP.Name))
+                {
+                    blackboard.properties.RemoveAt(i);
+                    passValue.RemoveAt(i);
+                }
+            }
         }
     }
 }
