@@ -84,8 +84,12 @@ namespace HIAAC.BehaviorTrees
 
         public override void OnStart()
         {
+            
+
             if (currentTag == null || overrideMode)
             {
+                bool treeChanged = false;
+
                 BehaviorTag oldTag = currentTag;
                 BehaviorTag newTag = requestTag();
 
@@ -103,6 +107,8 @@ namespace HIAAC.BehaviorTrees
 
                     base.Subtree = newTag.RegisterUser(gameObject);
                     currentTag = newTag;
+
+                    treeChanged = true;
                 }
                 else //Current tag == null
                 {
@@ -110,6 +116,22 @@ namespace HIAAC.BehaviorTrees
                     {
                         base.Subtree = newTag.RegisterUser(gameObject);
                         currentTag = newTag;
+
+                        treeChanged = true;
+                    }
+                }
+
+                if(treeChanged)
+                {
+                    //Copy blackboard from tag
+                    for(int i = 0; i<newTag.passValue.Count; i++)
+                    {
+                        BlackboardOverridableProperty tagP = newTag.blackboard.properties[i];
+
+                        blackboard.SetPropertyValue(tagP.Name, tagP.property.Value, true);
+                        int index = blackboard.properties.FindIndex(x => x.Name == tagP.Name);
+
+                        passValue[index] = newTag.passValue[i];
                     }
                 }
             }

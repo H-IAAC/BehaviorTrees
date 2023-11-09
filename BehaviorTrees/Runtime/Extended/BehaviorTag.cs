@@ -40,35 +40,9 @@ namespace HIAAC.BehaviorTrees
         [HideInInspector] public List<GameObject> newUsers = new();
         [HideInInspector] public List<GameObject> droppedUsers = new();
 
-        BehaviorTree runtimeTree;
-
         public BehaviorTag()
         {
             blackboard = new(this);
-        }
-
-        public BehaviorTree RuntimeTree
-        {   
-            get
-            {
-                if(runtimeTree == null)
-                {
-                    runtimeTree = Instantiate(tree);
-
-                    //Copy properties to runtimeTree
-                    for (int i = 0; i < runtimeTree.blackboard.properties.Count; i++)
-                    {
-                        if (passValue[i])
-                        {
-                            BlackboardProperty property = runtimeTree.blackboard.properties[i].property;
-                            property.Value = blackboard.GetPropertyValue<object>(property.PropertyName);
-                        }
-
-                    }
-                }
-
-                return runtimeTree;
-            }
         }
 
         public BehaviorTree RegisterUser(GameObject user)
@@ -81,7 +55,7 @@ namespace HIAAC.BehaviorTrees
             }
             newUsers.Add(user);
             
-            return RuntimeTree;
+            return tree;
         }
 
         public void UnregisterUser(GameObject user)
