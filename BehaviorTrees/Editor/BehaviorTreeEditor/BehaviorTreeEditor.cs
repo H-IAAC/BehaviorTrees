@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.Callbacks;
+using HIAAC.BehaviorTrees.Needs;
 
 namespace HIAAC.BehaviorTrees
 {
@@ -14,6 +15,7 @@ namespace HIAAC.BehaviorTrees
         InspectorView inspectorView; //Lateral inspector view
         BlackboardView blackboardView; //Blackboard view over the treeView
         InspectorView agentParameters; //Lateral BTag parameters view
+        NeedsView needsView;
         
         SerializedObject treeObject; //Active tree asset
 
@@ -57,6 +59,7 @@ namespace HIAAC.BehaviorTrees
             treeView = root.Q<BehaviorTreeView>();
             inspectorView = root.Q<InspectorView>("inspector");
             agentParameters = root.Q<InspectorView>("agent-parameters");
+            needsView = root.Q<NeedsView>();
             GenerateBlackboard();
 
             //Define the delegate methods
@@ -84,6 +87,9 @@ namespace HIAAC.BehaviorTrees
         void OnInspectorUpdate()
         {
             treeView.UpdateNodeStates();
+
+            //REMOVE
+            needsView.OnInspectorUpdate();
         }
 
         

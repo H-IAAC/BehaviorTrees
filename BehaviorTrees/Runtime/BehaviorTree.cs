@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using HIAAC.BehaviorTrees.Needs;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -25,6 +27,8 @@ namespace HIAAC.BehaviorTrees
         bool runtime = false; //If the tree is runtime (is binded to object and can be runned).
 
         [SerializeField] public Blackboard blackboard;
+
+        [SerializeField] public NeedsContainer needsContainer = new();
 
         /// <summary>
         /// If the tree is runtime (is binded to object and can be runned).
