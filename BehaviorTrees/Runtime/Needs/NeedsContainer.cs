@@ -6,10 +6,8 @@ namespace HIAAC.BehaviorTrees.Needs
     [System.Serializable]
     public class NeedsContainer
     {
-        [SerializeField] List<Need> needs;
-        [SerializeField] List<float> values;
-
-        Dictionary<Need, int> needMap;
+        [SerializeField] public List<NeedValue> needs;
+        Dictionary<Need, NeedValue> needMap;
 
         public float getNeedValue(Need need)
         {
@@ -20,19 +18,18 @@ namespace HIAAC.BehaviorTrees.Needs
                     needMap = new();
                     for(int i = 0; i<needs.Count; i++)
                     {
-                        needMap.Add(needs[i], i);
+                        needMap.Add(needs[i].need, needs[i]);
                     }
                 }
 
-                int index = needMap[need];
-                return values[index];
+                return needMap[need].value;
             }
 
             for(int i = 0; i<needs.Count; i++)
             {
-                if(needs[i] == need)
+                if(needs[i].need == need)
                 {
-                    return values[i];
+                    return needs[i].value;
                 }
             }
 
@@ -41,18 +38,17 @@ namespace HIAAC.BehaviorTrees.Needs
 
         public void addNeed(Need need, float value=0f)
         {
-            needs.Add(need);
-            values.Add(value);
+            NeedValue needValue = new()
+            {
+                need = need,
+                value = value
+            };
+
 
             if(needMap != null)
             {
-                needMap.Add(need, needs.Count-1);
+                needMap.Add(need, needValue);
             }
-        }
-
-        public Need[] GetNeeds()
-        {
-            return needs.ToArray();
         }
 
     }

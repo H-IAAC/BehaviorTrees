@@ -88,8 +88,6 @@ namespace HIAAC.BehaviorTrees
         {
             treeView.UpdateNodeStates();
 
-            //REMOVE
-            needsView.OnInspectorUpdate();
         }
 
         
@@ -152,6 +150,7 @@ namespace HIAAC.BehaviorTrees
                     treeView.PopulateView(tree);
                     blackboardView.PopulateView(tree);
                     agentParameters.UpdateSelection(treeObject.FindProperty("bTagParameters"));
+                    needsView.PopulateView(tree);
                 }
             }
         }
