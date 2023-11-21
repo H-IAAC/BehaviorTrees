@@ -71,13 +71,18 @@ namespace HIAAC.BehaviorTrees.Needs
                     return;
                 }
 
-                slider.value = tree.needsContainer.needs[index].value;
+                //slider.value = tree.needsContainer.needs[index].value;
                 slider.showInputField = true;
 
-                slider.RegisterCallback<ChangeEvent<float>>((evt) =>
+                /*slider.RegisterCallback<ChangeEvent<float>>((evt) =>
                 {
                     tree.needsContainer.needs[index].value = evt.newValue;
-                });
+                });*/
+
+                SerializedProperty property = serializedTree.FindProperty($"needsContainer.needs.Array.data[{index}].value");
+                //slider.Bind(serializedTree);
+                //slider.bindingPath = $"needsContainer.needs.Array.data[{index}].value";
+                slider.BindProperty(property);
             };
 
             listView.columns["weight"].bindCell = (VisualElement element, int index) => BindIMGUI(element, index, $"needsContainer.needs.Array.data[{index}].weight");
