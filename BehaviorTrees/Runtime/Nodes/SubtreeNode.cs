@@ -70,6 +70,7 @@ namespace HIAAC.BehaviorTrees
             {
                 runtimeTree = subtree.Clone();
                 runtimeTree.Bind(gameObject);
+                runtimeTree.needsContainer = tree.needsContainer;
                 runtimeTree.Start();
             }
         }
@@ -164,7 +165,8 @@ namespace HIAAC.BehaviorTrees
             {
                 runtimeTree = subtree.Clone();
                 runtimeTree.Bind(gameObject);
-
+                runtimeTree.needsContainer = tree.needsContainer;
+                
                 runtimeTree.Start();
             }
 
