@@ -138,7 +138,7 @@ namespace HIAAC.BehaviorTrees
             //Add nodes to tree and create new-original map.
             tree.nodes = new List<Node>();
             List<string> clonedGUID = new();
-            Node.Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+            Node.Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); node.tree = tree; });
 
             //Check for nodes that aren't in main tree (not child of root) and clone.
             foreach (Node origNode in this.nodes)
@@ -154,7 +154,7 @@ namespace HIAAC.BehaviorTrees
 
                     //Clone nodes and add to the tree
                     Node cloned = parent.Clone();
-                    Node.Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+                    Node.Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); node.tree = tree; });
                 }
             }
 
