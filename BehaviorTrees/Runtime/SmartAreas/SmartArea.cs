@@ -99,6 +99,11 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             if(go.GetComponent<BehaviorTreeRunner>() == null)
             {
+                if(collider.attachedRigidbody == null)
+                {
+                    return null;
+                }
+                
                 go = collider.attachedRigidbody.gameObject;
 
                 if(go.GetComponent<BehaviorTreeRunner>() == null)
