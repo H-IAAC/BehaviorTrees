@@ -41,6 +41,12 @@ namespace HIAAC.BehaviorTrees.Needs
             return getNeed(need).value;         
         }
 
+        public void setNeedValue(Need need, float value)
+        {
+            value = Mathf.Clamp01(value);
+            getNeed(need).value = value;         
+        }
+
         public float getWeightedNeedAt(Need need, float value)
         {
             return getNeed(need).weight.Evaluate(value);

@@ -12,7 +12,6 @@ namespace HIAAC.BehaviorTrees.Needs
 
         public NeedValue()
         {
-            Debug.Log("NeedValue constructor");
             weight = AnimationCurve.Linear(0f, 1f, 1f, 0f);
         }
         
