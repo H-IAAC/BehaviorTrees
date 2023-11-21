@@ -129,8 +129,8 @@ namespace HIAAC.BehaviorTrees
         /// </summary>
         public void Start()
         {
-            ComputeUtility();
             OnStart();
+            ComputeUtility();
         }
 
         /// <summary>

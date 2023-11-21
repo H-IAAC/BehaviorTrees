@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using HIAAC.BehaviorTrees.SmartAreas;
+using HIAAC.BehaviorTrees.Needs;
 
 
 namespace HIAAC.BehaviorTrees
@@ -9,6 +10,11 @@ namespace HIAAC.BehaviorTrees
     public class RequestBehaviorNode : SubtreeNode
     {
         [SerializeField] bool fromArea;
+        [SerializeField] public bool useNeedUtility;
+        [SerializeField] public UtilitySelectionMethod utilitySelectionMethod;
+        [SerializeField] float utilityThreshould;
+
+        float currentTagScore;
 
         public RequestBehaviorNode() : base()
         {
@@ -57,8 +63,7 @@ namespace HIAAC.BehaviorTrees
 
         BehaviorTag currentTag;
 
-
-        BehaviorTag requestTag()
+        List<BehaviorTag> getAvaiableTags()
         {
             List<BehaviorTag> tags;
             if (fromArea)
@@ -78,8 +83,43 @@ namespace HIAAC.BehaviorTrees
                 tags = provider.ProvideTags(tree.bTagParameters);
             }
 
-            
-            return IBTagProvider.GetFirstCompatible(tags, minimumValueParameters, maximumValueParameters);
+            return tags;
+        }
+
+        List<ScoredBTag> scoreTags(List<BehaviorTag> tags)
+        {
+            NeedsContainer agentNeeds = tree.needsContainer;
+
+            List<ScoredBTag> scoredTags = new();
+
+            foreach(BehaviorTag tag in tags)
+            {
+                scoredTags.Add(new(tag,agentNeeds));
+            }
+
+            return scoredTags;
+
+        }
+
+        BehaviorTag requestTag()
+        {
+            List<BehaviorTag> tags = getAvaiableTags();
+
+            if(useNeedUtility)
+            {
+                IBTagProvider.RemoveIncompatibleTags(tags, minimumValueParameters, maximumValueParameters);
+
+                List<ScoredBTag> scoredTags = scoreTags(tags);
+                List<ScoredBTag> sortedTags =  SortByUtility.Sort(scoredTags, utilitySelectionMethod, utilityThreshould);
+
+                currentTagScore = sortedTags[0].utility;
+
+                return sortedTags[0].tag;
+            }
+            else
+            {
+                return IBTagProvider.GetFirstCompatible(tags, minimumValueParameters, maximumValueParameters);
+            }
         }
 
         public override void OnStart()
@@ -182,6 +222,18 @@ namespace HIAAC.BehaviorTrees
             }
 
             return state;
+        }
+
+        protected override float OnComputeUtility()
+        { 
+            if(useNeedUtility)
+            {
+                return currentTagScore;
+            }
+            else
+            {
+                return base.OnComputeUtility();
+            }
         }
     }
 }

@@ -77,6 +77,10 @@ namespace HIAAC.BehaviorTrees
 
         public override void OnStop()
         {
+            if (runtimeTree != null)
+            {
+                runtimeTree.ResetStates();
+            }
         }
 
         public override NodeState OnUpdate()

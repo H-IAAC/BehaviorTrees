@@ -27,6 +27,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             }
 
             BehaviorTag tagClone = Instantiate(bTag);
+            tagClone.tree = bTag.tree.Clone();
 
             //Override blackboard properties
             for(int i = 0; i<blackboard.properties.Count; i++)
@@ -42,8 +43,9 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             //Override needs
             for(int i = 0; i<overrideNeeds.needs.Count; i++)
             {
-                tagClone.needsContainer.addNeed(overrideNeeds.needs[i].need, overrideNeeds.needs[i].value);
+                tagClone.advertisedNeeds.addNeed(overrideNeeds.needs[i].need, overrideNeeds.needs[i].value);
             }
+            tagClone.UpdateAdvertisedNeeds();
 
             SmartArea area = AreaManager.instance.GetArea(transform.position);
             area.AddBehavior(tagClone);    

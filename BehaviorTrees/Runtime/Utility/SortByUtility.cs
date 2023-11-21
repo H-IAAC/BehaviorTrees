@@ -48,6 +48,10 @@ namespace HIAAC.BehaviorTrees
                                 if (total > randVal) break;
                             }
 
+                            if(result == elements.Count)
+                            {
+                                result -= 1;
+                            }
 
                             T next = elements[result];
 

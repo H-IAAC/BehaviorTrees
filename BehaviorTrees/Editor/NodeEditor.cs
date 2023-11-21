@@ -50,7 +50,7 @@ namespace HIAAC.BehaviorTrees
 
             DrawMemory();
 
-            DrawComposite();
+            DrawUtility();
             DrawSubtree();
            
             DrawProperties();
@@ -72,7 +72,7 @@ namespace HIAAC.BehaviorTrees
         /// <summary>
         /// Draw composite specific properties
         /// </summary>
-        void DrawComposite()
+        void DrawUtility()
         {
             if (node is CompositeNode composite)
             {
@@ -84,6 +84,24 @@ namespace HIAAC.BehaviorTrees
                     {
                         if (propertyName == "utilityThreshould" &&
                             composite.utilitySelectionMethod != UtilitySelectionMethod.RANDOM_THRESHOULD)
+                        {
+                            continue;
+                        }
+
+                        SerializedProperty property = serializedObject.FindProperty(propertyName);
+                        EditorGUILayout.PropertyField(property, true);
+                    }
+                }
+            }
+
+            if (node is RequestBehaviorNode requestBehaviorNode)
+            {
+                if (requestBehaviorNode.useNeedUtility)
+                {
+                    foreach (string propertyName in utilityProperties)
+                    {
+                        if (propertyName == "utilityThreshould" &&
+                            requestBehaviorNode.utilitySelectionMethod != UtilitySelectionMethod.RANDOM_THRESHOULD)
                         {
                             continue;
                         }

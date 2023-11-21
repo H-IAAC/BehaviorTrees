@@ -86,8 +86,10 @@ namespace HIAAC.BehaviorTrees
         /// </summary>
         void OnInspectorUpdate()
         {
-            treeView.UpdateNodeStates();
-
+            if(treeView != null)
+            {
+                treeView.UpdateNodeStates();
+            }
         }
 
         

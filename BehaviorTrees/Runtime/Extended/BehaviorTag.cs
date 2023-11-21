@@ -18,7 +18,7 @@ namespace HIAAC.BehaviorTrees
     [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tag")]
     public class BehaviorTag : ScriptableObject
     {
-        [Tooltip("Tag's tree.")][SerializeField] BehaviorTree tree;
+        [Tooltip("Tag's tree.")][SerializeField] public BehaviorTree tree;
         [SerializeField] Optional<uint> maxUsers = new(){value=0};
 
         [Tooltip("Number of users to track if registered or unregistered.")][SerializeField] int maxTrackedUsers = 10;
@@ -41,7 +41,7 @@ namespace HIAAC.BehaviorTrees
         [HideInInspector] public List<GameObject> newUsers = new();
         [HideInInspector] public List<GameObject> droppedUsers = new();
 
-        [SerializeField] public NeedsContainer needsContainer = new();
+        [SerializeField] public NeedsContainer advertisedNeeds = new();
 
         public BehaviorTag()
         {
@@ -108,7 +108,7 @@ namespace HIAAC.BehaviorTrees
 
             foreach(BlackboardOverridableProperty treeP in tree.blackboard.properties)
             {
-                if(!blackboard.HasProperty(treeP.Name))
+                if(!blackboard.HasProperty(treeP.Name) && treeP.Name != "advertisedNeeds")
                 {
                     blackboard.CreateProperty(treeP.property.GetType(), treeP.Name);
                     passValue.Add(false);
@@ -125,7 +125,21 @@ namespace HIAAC.BehaviorTrees
                     passValue.RemoveAt(i);
                 }
             }
+
+            if (!tree.blackboard.HasProperty("advertisedNeeds"))
+            {
+                tree.blackboard.CreateProperty(typeof(NeedValueArrayBlackboardProperty), "advertisedNeeds");
+                UpdateAdvertisedNeeds();
+            }
+
+
         }
+
+        public void UpdateAdvertisedNeeds()
+        {
+            Debug.Log($"UpdateAdvertisedNeeds|{name}|{advertisedNeeds.needs.Count()}");
+            tree.blackboard.SetPropertyValue("advertisedNeeds", advertisedNeeds.needs.ToArray());
+        } 
 
         void OnDisable()
         {
