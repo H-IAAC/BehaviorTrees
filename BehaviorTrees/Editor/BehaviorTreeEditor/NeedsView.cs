@@ -25,62 +25,52 @@ namespace HIAAC.BehaviorTrees.Needs
             {
                 name = "need",
                 title = "Need",
-                width = 120
+                width = 100
             };
 
             Column c1 = new()
             {
                 name = "value",
                 title = "Value",
-                width = 160
+                width = 130
             };
 
-            Columns columns = new();
-            columns.Add(c0);
-            columns.Add(c1);
+            Column c2 = new()
+            {
+                name = "weight",
+                title = "Weight",
+                width = 55
+            };
 
-            listView = new(columns);
-            listView.showAddRemoveFooter = false;
-            listView.itemsSource = new List<NeedValue>();
+            Columns columns = new()
+            {
+                c0,
+                c1,
+                c2
+            };
+
+            listView = new(columns)
+            {
+                showAddRemoveFooter = false,
+                itemsSource = new List<NeedValue>()
+            };
+
 
             listView.columns["need"].makeCell = () => new IMGUIContainer();
             listView.columns["value"].makeCell = () => new Slider() { highValue = 1f };
+            listView.columns["weight"].makeCell = () => new IMGUIContainer();
 
-            listView.columns["need"].bindCell = (VisualElement element, int index) => {
-                IMGUIContainer container = element as IMGUIContainer;
-                container.Clear();
-
-                if(tree == null)
+            listView.columns["need"].bindCell = (VisualElement element, int index) => BindIMGUI(element, index, $"needsContainer.needs.Array.data[{index}].need");
+            
+            listView.columns["value"].bindCell = (VisualElement element, int index) => {
+                Slider slider = element as Slider;
+                
+                if(tree.needsContainer.needs[index] == null)
                 {
+                    Debug.Log("Null need");
                     return;
                 }
 
-                container.onGUIHandler = () =>
-                {
-                    SerializedProperty property = serializedTree.FindProperty($"needsContainer.needs.Array.data[{index}].need");
-
-                    if (property == null)
-                    {
-
-                    }
-                    else if (property.serializedObject.targetObject == null)
-                    {
-                        this.Clear();
-                    }
-                    else
-                    {
-                        property.serializedObject.Update();
-                        EditorGUILayout.PropertyField(property, GUIContent.none);
-                        property.serializedObject.ApplyModifiedProperties();
-                    }
-
-
-                };
-
-            };
-
-            listView.columns["value"].bindCell = (VisualElement element, int index) => {
-                Slider slider = element as Slider;
                 slider.value = tree.needsContainer.needs[index].value;
                 slider.showInputField = true;
 
@@ -90,8 +80,24 @@ namespace HIAAC.BehaviorTrees.Needs
                 });
             };
 
-            this.Add(listView);
+            listView.columns["weight"].bindCell = (VisualElement element, int index) => BindIMGUI(element, index, $"needsContainer.needs.Array.data[{index}].weight");
 
+            listView.itemsAdded += (IEnumerable<int> indexes) => {
+                foreach(int index in indexes)
+                {
+                    schedule.Execute(() => Refresh(index)).Every(100).ForDuration(101);
+                }
+            };
+
+            Add(listView);
+
+        }
+
+        public void Refresh(int index)
+        {
+            serializedTree.Update();
+
+            listView.RefreshItem(index);
         }
 
         public void PopulateView(BehaviorTree tree)
@@ -108,6 +114,36 @@ namespace HIAAC.BehaviorTrees.Needs
             listView.showAddRemoveFooter = true;
         }
 
+        public void BindIMGUI(VisualElement element, int index, string propertyName)
+        {
+            IMGUIContainer container = element as IMGUIContainer;
+            container.Clear();
 
+            if (tree == null)
+            {
+                return;
+            }
+
+            container.onGUIHandler = () =>
+            {
+                SerializedProperty property = serializedTree.FindProperty(propertyName);
+
+                if (property == null)
+                {
+                    Debug.Log($"Null property {propertyName}");
+                }
+                else if (property.serializedObject.targetObject == null)
+                {
+                    container.Clear();
+                }
+                else
+                {
+                    property.serializedObject.Update();
+                    EditorGUILayout.PropertyField(property, GUIContent.none);
+                    property.serializedObject.ApplyModifiedProperties();
+                }
+
+            };
+        }
     }
 }
