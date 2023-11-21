@@ -78,6 +78,9 @@ namespace HIAAC.BehaviorTrees
         /// <returns>Current node state</returns>
         NodeState memorylessUpdate()
         {
+            ResetNext();
+            currentChild = NextChild();
+
             //Run all children
             while (currentChild != null)
             {
