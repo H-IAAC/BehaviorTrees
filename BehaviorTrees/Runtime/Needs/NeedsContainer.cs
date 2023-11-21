@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,9 +59,30 @@ namespace HIAAC.BehaviorTrees.Needs
             return needValue.weight.Evaluate(needValue.value);
         }
 
+        public bool HasNeed(Need need)
+        {
+            try
+            {
+                getNeed(need);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
 
         public void addNeed(Need need, float value=0f)
         {
+            if(HasNeed(need))
+            {
+                NeedValue needValue1 = getNeed(need);
+                needValue1.value = value;
+
+                return;
+            }
+
             NeedValue needValue = new()
             {
                 need = need,
@@ -72,6 +94,8 @@ namespace HIAAC.BehaviorTrees.Needs
             {
                 needMap.Add(need, needValue);
             }
+
+            needs.Add(needValue);
         }
 
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using HIAAC.BehaviorTrees.Needs;
 using UnityEngine;
 
 namespace HIAAC.BehaviorTrees.SmartAreas
@@ -10,6 +11,8 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
         [SerializeField] public Blackboard blackboard;
         [SerializeField][HideInInspector] public List<bool> passValue = new();
+
+        [SerializeField] public NeedsContainer overrideNeeds;
 
         public AddBehaviorToArea()
         {
@@ -25,6 +28,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
             BehaviorTag tagClone = Instantiate(bTag);
 
+            //Override blackboard properties
             for(int i = 0; i<blackboard.properties.Count; i++)
             {
                 BlackboardOverridableProperty thisP = blackboard.properties[i];
@@ -33,6 +37,12 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
                 tagClone.blackboard.properties[i].property.Value = thisP.property.Value;
                 tagClone.passValue[i] = passValue[i];
+            }
+
+            //Override needs
+            for(int i = 0; i<overrideNeeds.needs.Count; i++)
+            {
+                tagClone.needsContainer.addNeed(overrideNeeds.needs[i].need, overrideNeeds.needs[i].value);
             }
 
             SmartArea area = AreaManager.instance.GetArea(transform.position);

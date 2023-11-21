@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using HIAAC.BehaviorTrees.Needs;
 
 
 namespace HIAAC.BehaviorTrees
@@ -39,6 +40,8 @@ namespace HIAAC.BehaviorTrees
         List<GameObject> users = new();
         [HideInInspector] public List<GameObject> newUsers = new();
         [HideInInspector] public List<GameObject> droppedUsers = new();
+
+        [SerializeField] public NeedsContainer needsContainer = new();
 
         public BehaviorTag()
         {
