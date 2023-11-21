@@ -12,7 +12,7 @@ namespace HIAAC.BehaviorTrees
     /// Base node class. 
     /// All Behavior Tree nodes inherit from it.
     /// </summary>
-    public abstract class Node : ScriptableObject
+    public abstract class Node : ScriptableObject, IUseful
     {
         [HideInInspector] public NodeState state = NodeState.Runnning; //Current state of the node
         [HideInInspector] public bool started = false; //If node already started
