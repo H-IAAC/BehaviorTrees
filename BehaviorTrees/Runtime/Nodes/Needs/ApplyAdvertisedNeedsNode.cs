@@ -26,8 +26,6 @@ namespace HIAAC.BehaviorTrees.Needs
         {
             NeedValue[] needs = GetPropertyValue<NeedValue[]>("advertisedNeeds");
 
-            Debug.Log(needs.Count());
-
             foreach(NeedValue needValue in needs)
             {
                 float currentValue;

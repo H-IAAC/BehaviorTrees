@@ -48,7 +48,11 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             tagClone.UpdateAdvertisedNeeds();
 
             SmartArea area = AreaManager.instance.GetArea(transform.position);
-            area.AddBehavior(tagClone);    
+
+            if(area != null)
+            {
+                area.AddBehavior(tagClone);
+            }    
         }
 
         public void OnValidate()

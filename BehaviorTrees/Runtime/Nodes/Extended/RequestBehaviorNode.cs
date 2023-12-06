@@ -105,6 +105,11 @@ namespace HIAAC.BehaviorTrees
         {
             List<BehaviorTag> tags = getAvaiableTags();
 
+            if(tags.Count == 0)
+            {
+                return null;
+            }
+
             if(useNeedUtility)
             {
                 IBTagProvider.RemoveIncompatibleTags(tags, minimumValueParameters, maximumValueParameters);

@@ -137,7 +137,6 @@ namespace HIAAC.BehaviorTrees
 
         public void UpdateAdvertisedNeeds()
         {
-            Debug.Log($"UpdateAdvertisedNeeds|{name}|{advertisedNeeds.needs.Count()}");
             tree.blackboard.SetPropertyValue("advertisedNeeds", advertisedNeeds.needs.ToArray());
         } 
 

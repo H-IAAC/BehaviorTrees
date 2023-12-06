@@ -52,7 +52,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
         public bool IsInside(Vector3 position)
         {
             bool inside = false;
-
+            
             foreach(Collider c in colliders)
             {
                 if(c.ClosestPoint(position) == position)
