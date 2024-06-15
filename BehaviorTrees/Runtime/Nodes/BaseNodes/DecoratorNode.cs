@@ -28,7 +28,7 @@ namespace HIAAC.BehaviorTrees
         public override Node Clone()
         {
             DecoratorNode node = Instantiate(this);
-            node.child = child.Clone();
+            node.child = child?.Clone();
             node.guid = guid;
             return node;
         }
@@ -81,6 +81,11 @@ namespace HIAAC.BehaviorTrees
         /// <returns>Node utility.</returns>
         protected override float OnComputeUtility()
         {
+            if(child == null)
+            {
+                return 0f;
+            }
+            
             child.ComputeUtility();
             return child.GetUtility();
         }

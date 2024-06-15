@@ -114,98 +114,9 @@ namespace HIAAC.BehaviorTrees
                 return;
             }
 
-
-            switch (utilitySelectionMethod)
-            {
-                case UtilitySelectionMethod.MAXIMUM: //Sort children by utility
-                    {
-                        nextChildren = new(children);
-                        nextChildren.Sort(CompareByUtility);
-                        break;
-                    }
-
-                case UtilitySelectionMethod.WEIGHT_RANDOM:
-                    {
-                        nextChildren.Clear();
-                        float weightTotal = 0;
-                        List<Node> nodes = new();
-
-                        //Compute total weight (utility) and add children to list
-                        foreach (Node node in children)
-                        {
-                            nodes.Add(node);
-                            weightTotal += node.GetUtility();
-                        }
-
-                        
-                        //Sort children by utility 
-                        nodes.Sort(CompareByUtility);
-
-                        //Create node sequence by utility weight
-                        while (nodes.Count > 1)
-                        {
-                            int result;
-                            float total = 0;
-                            float randVal = Random.Range(0, weightTotal);
-                            for (result = 0; result < nodes.Count; result++)
-                            {
-                                total += nodes[result].GetUtility();
-                                if (total > randVal) break;
-                            }
-
-
-                            Node next = nodes[result];
-
-                            weightTotal -= next.GetUtility();
-                            nodes.RemoveAt(result);
-
-                            nextChildren.Add(next);
-                        }
-
-                        nextChildren.Add(nodes[0]);
-
-                        break;
-                    }
-                case UtilitySelectionMethod.RANDOM_THRESHOULD:
-                    {
-                        nextChildren = new(children);
-
-                        //Remove children without minimum utility
-                        for (int i = children.Count - 1; i >= 0; i--)
-                        {
-                            if (nextChildren[i].GetUtility() < utilityThreshould)
-                            {
-                                nextChildren.RemoveAt(i);
-                            }
-                        }
-
-                        //Randomize
-                        nextChildren.Shuffle();
-
-
-                        break;
-                    }
-            }
+            nextChildren = SortByUtility.Sort(children, utilitySelectionMethod, utilityThreshould);
         }
 
-        /// <summary>
-        /// Compare nodes by utility
-        /// </summary>
-        /// <param name="first">First node to compare</param>
-        /// <param name="second">Second node to compare</param>
-        /// <returns>1 if first's utility is less than second's, -1 if is greater, 0 if equal. </returns>
-        private int CompareByUtility(Node first, Node second)
-        {
-            if (first.GetUtility() < second.GetUtility())
-            {
-                return 1;
-            }
-            else if (first.GetUtility() > second.GetUtility())
-            {
-                return -1;
-            }
-            return -0;
-        }
 
         /// <summary>
         /// Update node utility, using utilityPropagationMethod.

@@ -9,7 +9,7 @@ namespace HIAAC.BehaviorTrees
     [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tag Container")]
     public class BTagContainer : ScriptableObject, IBTagProvider
     {
-        [Tooltip("Tags the container can provide.")] public List<BehaviorTag> tags;
+        [Tooltip("Tags the container can provide. ")][SerializeField] List<BehaviorTag> tags = new();
         [Tooltip("If should randomize the tags order after providing one.")] public bool randomizeOnProvide;
         [Tooltip("If should randomize the tags order on the enable.")] public bool randomizeOnEnable = false;
 
@@ -22,6 +22,13 @@ namespace HIAAC.BehaviorTrees
         public List<BehaviorTag> ProvideTags(List<BTagParameter> agentParameters)
         {
             List<BehaviorTag> availableTags = new();
+
+            ProvideTags(agentParameters, availableTags);
+            return availableTags;
+        }
+
+        public void ProvideTags(List<BTagParameter> agentParameters, List<BehaviorTag> availableTags)
+        {
             foreach (BehaviorTag tag in tags)
             {
                 if (tag.IsCompatible(agentParameters))
@@ -34,8 +41,28 @@ namespace HIAAC.BehaviorTrees
             {
                 tags.Shuffle();
             }
+        }
 
-            return availableTags;
+        public void AddTag(BehaviorTag tag)
+        {
+            if(tag.container)
+            {
+                tag.container.RemoveTag(tag);
+            }
+
+            tag.container = this;
+
+            if(!tags.Contains(tag))
+            {
+                tags.Add(tag);
+            }
+        }
+
+        public void RemoveTag(BehaviorTag tag)
+        {
+            tag.container = null;
+
+            tags.Remove(tag);
         }
 
         void OnEnable()
@@ -43,6 +70,23 @@ namespace HIAAC.BehaviorTrees
             if(randomizeOnEnable)
             {
                 tags.Shuffle();
+            }
+        }
+
+        public void OnValidate()
+        {
+            for(int i = tags.Count-1; i>=0; i--)
+            {
+                BehaviorTag tag = tags[i];
+
+                if(!tag)
+                {
+                    tags.RemoveAt(i);
+                }
+                else
+                {
+                    tag.container = this;
+                }
             }
         }
     }

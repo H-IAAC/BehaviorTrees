@@ -12,7 +12,7 @@ namespace HIAAC.BehaviorTrees
     /// Base node class. 
     /// All Behavior Tree nodes inherit from it.
     /// </summary>
-    public abstract class Node : ScriptableObject
+    public abstract class Node : ScriptableObject, IUseful
     {
         [HideInInspector] public NodeState state = NodeState.Runnning; //Current state of the node
         [HideInInspector] public bool started = false; //If node already started
@@ -129,8 +129,8 @@ namespace HIAAC.BehaviorTrees
         /// </summary>
         public void Start()
         {
-            ComputeUtility();
             OnStart();
+            ComputeUtility();
         }
 
         /// <summary>
@@ -258,6 +258,11 @@ namespace HIAAC.BehaviorTrees
         public bool HasProperty(string name)
         {
             return blackboard.HasProperty(name);
+        }
+
+        public void DeleteProperty(string name)
+        {
+            blackboard.DeleteProperty(name);
         }
 
 

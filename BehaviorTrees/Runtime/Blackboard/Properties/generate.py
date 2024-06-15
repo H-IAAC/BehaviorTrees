@@ -8,6 +8,7 @@ types = {
     "Vector2" : "Vector2",
     "Vector3" : "Vector3",
     "AnimationCurve" : "Curve",
+    "Object" : "UnityEngine.Object",
 }
 
 template = """using System;

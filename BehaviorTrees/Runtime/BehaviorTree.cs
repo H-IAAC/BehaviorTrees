@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using HIAAC.BehaviorTrees.Needs;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -25,6 +27,8 @@ namespace HIAAC.BehaviorTrees
         bool runtime = false; //If the tree is runtime (is binded to object and can be runned).
 
         [SerializeField] public Blackboard blackboard;
+
+        [SerializeField] public NeedsContainer needsContainer = new();
 
         /// <summary>
         /// If the tree is runtime (is binded to object and can be runned).
@@ -99,6 +103,11 @@ namespace HIAAC.BehaviorTrees
             return treeState;
         }
 
+        public void ResetStates()
+        {
+            nodes.ForEach(node => { node.started = false; node.state = NodeState.Runnning; });
+        }
+
         /// <summary>
         /// Get the tree utility value (same as the root node).
         /// </summary>
@@ -129,7 +138,7 @@ namespace HIAAC.BehaviorTrees
             //Add nodes to tree and create new-original map.
             tree.nodes = new List<Node>();
             List<string> clonedGUID = new();
-            Node.Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+            Node.Traverse(tree.rootNode, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); node.tree = tree; });
 
             //Check for nodes that aren't in main tree (not child of root) and clone.
             foreach (Node origNode in this.nodes)
@@ -145,7 +154,7 @@ namespace HIAAC.BehaviorTrees
 
                     //Clone nodes and add to the tree
                     Node cloned = parent.Clone();
-                    Node.Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); });
+                    Node.Traverse(cloned, (node) => { tree.nodes.Add(node); clonedGUID.Add(node.guid); node.tree = tree; });
                 }
             }
 
@@ -180,6 +189,11 @@ namespace HIAAC.BehaviorTrees
             return blackboard.CreateProperty(type);
         }
 
+        public BlackboardProperty CreateProperty(Type type, string name)
+        {
+            return blackboard.CreateProperty(type, name);
+        }
+
         /// <summary>
         /// Deletes BlackboardProperty of the tree.
         /// </summary>
@@ -191,14 +205,17 @@ namespace HIAAC.BehaviorTrees
 
         public void SetPropertyValue<T>(string name, T value)
         {
-            name = GetType().Name + "/" + name;
             blackboard.GetProperty(name).Value = value;
         }
 
         public T GetPropertyValue<T>(string name, bool forceNodeProperty = false)
         {
-            name = GetType().Name + "/" + name;
             return blackboard.GetPropertyValue<T>(name, forceNodeProperty);
+        }
+
+        public bool HasProperty(string name)
+        {
+            return blackboard.HasProperty(name);
         }
         
 

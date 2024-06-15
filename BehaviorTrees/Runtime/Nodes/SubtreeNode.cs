@@ -70,12 +70,17 @@ namespace HIAAC.BehaviorTrees
             {
                 runtimeTree = subtree.Clone();
                 runtimeTree.Bind(gameObject);
+                runtimeTree.needsContainer = tree.needsContainer;
                 runtimeTree.Start();
             }
         }
 
         public override void OnStop()
         {
+            if (runtimeTree != null)
+            {
+                runtimeTree.ResetStates();
+            }
         }
 
         public override NodeState OnUpdate()
@@ -164,7 +169,8 @@ namespace HIAAC.BehaviorTrees
             {
                 runtimeTree = subtree.Clone();
                 runtimeTree.Bind(gameObject);
-
+                runtimeTree.needsContainer = tree.needsContainer;
+                
                 runtimeTree.Start();
             }
 

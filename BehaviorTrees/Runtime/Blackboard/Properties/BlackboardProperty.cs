@@ -1,7 +1,6 @@
 using System;
 using UnityEngine.UIElements;
 using UnityEngine;
-using UnityEditor;
 
 namespace HIAAC.BehaviorTrees
 {
@@ -113,5 +112,68 @@ namespace HIAAC.BehaviorTrees
             }
         }
 
+    }
+
+    [Serializable]
+    public abstract class ObjectBlackboardProperty<T> : BlackboardProperty where T : UnityEngine.Object 
+    {
+        [SerializeField]
+        UnityEngine.Object value;
+
+        public override object Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                if (value is T)
+                {
+                    this.value = value as UnityEngine.Object;
+                }
+                else
+                {
+                    this.value = null;
+                }
+            }
+        }
+
+        public T ObjectValue
+        {
+            get
+            {
+                return value as T;
+            }
+        }
+
+        /// <summary>
+        /// Name of the type of the property.
+        /// </summary>
+        public override string PropertyTypeName
+        {
+            get
+            {
+                //Get name of the type
+                string name = typeof(T).Name;
+
+                //Remove "Property" sufix if any.
+                string sufix = "Property";
+                if (name.EndsWith(sufix))
+                {
+                    name = name.Substring(0, name.Length - sufix.Length);
+                }
+
+                return name;
+            }
+        }
+
+        public override void Validate()
+        {
+            if (value is not T)
+            {
+                value = null;
+            }
+        }
     }
 }

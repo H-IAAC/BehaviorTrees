@@ -45,7 +45,12 @@ namespace HIAAC.BehaviorTrees
         /// <param name="name">Name of the property. Can be changed internally for avoiding duplicates.</param>
         /// <returns>Created property.</returns>
         public BlackboardProperty CreateProperty(Type type, string name)
-        {
+        { 
+            if(!type.IsSubclassOf(typeof(BlackboardProperty)))
+            {
+                throw new Exception("BlackboardProperty type must inherit from BlackboardProperty");
+            }
+
             //Avoid duplicated name
             while (properties.Any(x => x.Name == name))
             {
@@ -95,7 +100,7 @@ namespace HIAAC.BehaviorTrees
 
             if (index < 0)
             {
-                throw new ArgumentException("Property does not exist in node.");
+                throw new ArgumentException($"Property {name} does not exist in node/tree.");
             }
 
             string parentName = properties[index].parentName;
@@ -190,6 +195,20 @@ namespace HIAAC.BehaviorTrees
 #endif
 
         }
+
+        public void DeleteProperty(string name)
+        {
+#if UNITY_EDITOR
+            Undo.RecordObject(baseObject, "Behavior Tree (DeleteTreeProperty)");
+#endif  
+            int index = properties.FindIndex(x => x.Name == name);
+            properties.RemoveAt(index);
+
+#if UNITY_EDITOR
+            AssetDatabase.SaveAssets();
+#endif
+
+        }            
 
     }
 }

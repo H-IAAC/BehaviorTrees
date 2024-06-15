@@ -15,6 +15,7 @@ namespace HIAAC.BehaviorTrees
     public class SequencerNode : CompositeNode
     {
         Node currentChild; //Current child
+        bool first;
 
         public SequencerNode() : base(MemoryMode.Both)
         {
@@ -23,7 +24,7 @@ namespace HIAAC.BehaviorTrees
 
         public override void OnStart()
         {
-            currentChild = NextChild();
+            first = true;
         }
 
         public override void OnStop()
@@ -49,6 +50,12 @@ namespace HIAAC.BehaviorTrees
         /// <returns>Current node state</returns>
         NodeState memoriedUpdate()
         {
+            if(first)
+            {
+                currentChild = NextChild();
+                first = false;
+            }
+            
             //All child runned -> Success
             if (currentChild == null)
             {
@@ -78,6 +85,9 @@ namespace HIAAC.BehaviorTrees
         /// <returns>Current node state</returns>
         NodeState memorylessUpdate()
         {
+            ResetNext();
+            currentChild = NextChild();
+
             //Run all children
             while (currentChild != null)
             {

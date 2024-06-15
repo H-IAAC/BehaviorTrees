@@ -223,7 +223,6 @@ namespace HIAAC.BehaviorTrees
                     evt.menu.AppendAction($"{baseType.Name}/{type.Name}", (a) => CreateNode(type));
                 }
             }
-
             //Save mouse position for setting new node position
             mousePositionContextMenu = evt.localMousePosition;
 

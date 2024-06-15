@@ -15,16 +15,22 @@ namespace HIAAC.BehaviorTrees
         /// </summary>
         void Start()
         {
-            tree = tree.Clone();
-            tree.Bind(gameObject);
+            if(tree != null)
+            {
+                tree = tree.Clone();
+                tree.Bind(gameObject);
+            }
         }
 
         /// <summary>
         /// Run the tree
         /// </summary>
-        void Update()
+        protected virtual void Update()
         {
-            tree.Update();
+            if(tree != null)
+            {
+                tree.Update();
+            }
         }
 
         /// <summary>
@@ -47,7 +53,7 @@ namespace HIAAC.BehaviorTrees
         /// <exception cref="ArgumentException">If property does not exist.</exception>
         public T GetBlackboardProperty<T>(string name)
         {
-            return tree.blackboard.GetPropertyValue<T>(name);
+            return tree.GetPropertyValue<T>(name);
         }
 
         /// <summary>
