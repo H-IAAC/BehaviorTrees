@@ -1,6 +1,6 @@
 {
     "name": "com.hiaac.behaviortrees",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "displayName": "Behavior Trees",
     "description": "Implementation of basic behavior trees and extensions such as utility and extended trees.",
     "author": {
