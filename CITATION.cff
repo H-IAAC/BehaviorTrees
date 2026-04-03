@@ -1,0 +1,30 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Behavior Trees
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Elton
+    family-names: Cardoso do Nascimento
+    email: e233840@dac.unicamp.br
+    affiliation: H.IAAC-UNICAMP
+    orcid: "https://orcid.org/0009-0005-0480-6970"
+  - given-names: Paula
+    family-names: Dornhofer Paro Costa
+    email: paulad@unicamp.br
+    affiliation: H.IAAC-UNICAMP
+    orcid: "https://orcid.org/0000-0002-1534-5744"
+url: https://github.com/H-IAAC/BehaviorTrees
+repository-code: "https://github.com/H-IAAC/BehaviorTrees"
+abstract: >-
+  Unity implementation of basic behavior trees and 
+  extensions such as utility and external trees.
+keywords:
+  - unity
+  - behavior tree
+  - game ai
+license: LGPL-3.0
