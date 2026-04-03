@@ -1,5 +1,5 @@
-import re
 import os
+import re
 
 try:
     import cffconvert
@@ -24,16 +24,17 @@ with open(cff_file, "r") as file:
 citation_str = citation.as_bibtex(reference="my_citation")
 citation_str = citation_str.replace("@misc", "@software")
 
-citation_str = ("<!--CITATION START-->\n"+
-                "```bibtex\n"+
-                citation_str+
-                "```\n"+
+citation_str = ("<!--CITATION START-->\n" +
+                "```bibtex\n" +
+                citation_str +
+                "```\n" +
                 "<!--CITATION END-->")
 
-with open("README.md", "r") as file: 
+with open("README.md", "r", encoding="utf-8") as file:
     readme_text = file.read()
 
-readme_text = re.sub(r"<!--CITATION START-->((.|\n)*)<!--CITATION END-->", citation_str, readme_text)
+readme_text = re.sub(
+    r"<!--CITATION START-->((.|\n)*)<!--CITATION END-->", citation_str, readme_text)
 
 with open("README.md", "w") as file:
     file.write(readme_text)

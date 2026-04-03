@@ -1,3 +1,5 @@
+[![](https://img.shields.io/badge/DOI-10.5281/zenodo.19411137-1082c3?style=for-the-badge)](https://doi.org/10.5281/zenodo.19411137)
+
 # Behavior Trees
 
 Unity implementation of basic behavior trees and extensions such as utility and external trees.
@@ -33,6 +35,18 @@ See more projects from the group [here](https://github.com/brgsil/RepoOrganizer)
 - Add the nodes and connect to the root.
 - Assign the tree to run on a object with the `Behavior Tree Runner` component.
 
+## Citation
+<!--Don't remove the following tags, it's used for placing the generated citation from the CFF file-->
+<!--CITATION START-->
+```bibtex
+@software{my_citation,
+author = {Cardoso do Nascimento, Elton and Dornhofer Paro Costa, Paula},
+doi = {10.5281/zenodo.19411137},
+title = {Behavior Trees},
+url = {https://github.com/H-IAAC/BehaviorTrees}
+}
+```
+<!--CITATION END-->
 ## Authors
 
 - (2022-) [EltonCN](https://github.com/EltonCN): M. Eng. student, FEEC-UNICAMP
