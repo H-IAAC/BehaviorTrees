@@ -9,6 +9,8 @@ namespace HIAAC.BehaviorTrees.SmartAreas
     {
         [SerializeField] BehaviorTag bTag;
 
+        [SerializeField] public string overrideName;
+
         [Tooltip("Tag's description.")][SerializeField][TextAreaAttribute(2, 5)] public string overrideDescription;
 
 
@@ -49,6 +51,11 @@ namespace HIAAC.BehaviorTrees.SmartAreas
                 tagClone.advertisedNeeds.addNeed(overrideNeeds.needs[i].need, overrideNeeds.needs[i].value);
             }
             tagClone.UpdateAdvertisedNeeds();
+
+            if (overrideName != "")
+            {
+                tagClone.name = overrideName;
+            }
 
             if (overrideDescription != "")
             {
