@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using HIAAC.BehaviorTrees.Needs;
+using System.Numerics;
 
 
 namespace HIAAC.BehaviorTrees
@@ -18,8 +19,10 @@ namespace HIAAC.BehaviorTrees
     [CreateAssetMenu(menuName = "Behavior Tree/Behavior Tag")]
     public class BehaviorTag : ScriptableObject
     {
+        [Tooltip("Tag's description.")][SerializeField][TextAreaAttribute(2, 5)] public string description;
+
         [Tooltip("Tag's tree.")][SerializeField] public BehaviorTree tree;
-        [SerializeField] Optional<uint> maxUsers = new(){value=0};
+        [SerializeField] Optional<uint> maxUsers = new() { value = 0 };
 
         [Tooltip("Number of users to track if registered or unregistered.")][SerializeField] int maxTrackedUsers = 10;
 
@@ -43,6 +46,9 @@ namespace HIAAC.BehaviorTrees
 
         [SerializeField] public NeedsContainer advertisedNeeds = new();
 
+        [HideInInspector] public GameObject originGameObject;
+        [HideInInspector] public Vector3 originPosition;
+
         public BehaviorTag()
         {
             blackboard = new(this);
@@ -52,12 +58,12 @@ namespace HIAAC.BehaviorTrees
         {
             users.Add(user);
 
-            if(newUsers.Count == maxTrackedUsers)
+            if (newUsers.Count == maxTrackedUsers)
             {
                 newUsers.RemoveAt(0);
             }
             newUsers.Add(user);
-            
+
             return tree;
         }
 
@@ -65,7 +71,7 @@ namespace HIAAC.BehaviorTrees
         {
             users.Remove(user);
 
-            if(droppedUsers.Count == maxTrackedUsers)
+            if (droppedUsers.Count == maxTrackedUsers)
             {
                 droppedUsers.RemoveAt(0);
             }
@@ -79,7 +85,7 @@ namespace HIAAC.BehaviorTrees
         /// <returns>True if compatible.</returns>
         public bool IsCompatible(List<BTagParameter> parameters)
         {
-            if(maxUsers.enabled && maxUsers <= users.Count)
+            if (maxUsers.enabled && maxUsers <= users.Count)
             {
                 return false;
             }
@@ -95,27 +101,27 @@ namespace HIAAC.BehaviorTrees
                 onRunning = TagLifecycleType.HOLD;
             }
 
-            if(blackboard == null)
+            if (blackboard == null)
             {
                 blackboard = new(this);
                 passValue = new();
             }
 
-            if(tree == null)
+            if (tree == null)
             {
                 return;
             }
 
-            foreach(BlackboardOverridableProperty treeP in tree.blackboard.properties)
+            foreach (BlackboardOverridableProperty treeP in tree.blackboard.properties)
             {
-                if(!blackboard.HasProperty(treeP.Name) && treeP.Name != "advertisedNeeds")
+                if (!blackboard.HasProperty(treeP.Name) && treeP.Name != "advertisedNeeds")
                 {
                     blackboard.CreateProperty(treeP.property.GetType(), treeP.Name);
                     passValue.Add(false);
                 }
             }
 
-            for(int i = blackboard.properties.Count-1; i>= 0; i--)
+            for (int i = blackboard.properties.Count - 1; i >= 0; i--)
             {
                 BlackboardOverridableProperty tagP = blackboard.properties[i];
 
@@ -138,7 +144,7 @@ namespace HIAAC.BehaviorTrees
         public void UpdateAdvertisedNeeds()
         {
             tree.blackboard.SetPropertyValue("advertisedNeeds", advertisedNeeds.needs.ToArray());
-        } 
+        }
 
         void OnDisable()
         {

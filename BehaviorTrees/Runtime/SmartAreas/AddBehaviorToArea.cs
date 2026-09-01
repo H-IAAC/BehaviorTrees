@@ -9,6 +9,9 @@ namespace HIAAC.BehaviorTrees.SmartAreas
     {
         [SerializeField] BehaviorTag bTag;
 
+        [Tooltip("Tag's description.")][SerializeField][TextAreaAttribute(2, 5)] public string overrideDescription;
+
+
         [SerializeField] public Blackboard blackboard;
         [SerializeField][HideInInspector] public List<bool> passValue = new();
 
@@ -21,7 +24,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
 
         void Start()
         {
-            if(bTag == null)
+            if (bTag == null)
             {
                 return;
             }
@@ -30,7 +33,7 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             tagClone.tree = bTag.tree.Clone();
 
             //Override blackboard properties
-            for(int i = 0; i<blackboard.properties.Count; i++)
+            for (int i = 0; i < blackboard.properties.Count; i++)
             {
                 BlackboardOverridableProperty thisP = blackboard.properties[i];
 
@@ -41,38 +44,46 @@ namespace HIAAC.BehaviorTrees.SmartAreas
             }
 
             //Override needs
-            for(int i = 0; i<overrideNeeds.needs.Count; i++)
+            for (int i = 0; i < overrideNeeds.needs.Count; i++)
             {
                 tagClone.advertisedNeeds.addNeed(overrideNeeds.needs[i].need, overrideNeeds.needs[i].value);
             }
             tagClone.UpdateAdvertisedNeeds();
 
+            if (overrideDescription != "")
+            {
+                tagClone.description = overrideDescription;
+            }
+
+            tagClone.originGameObject = this.gameObject;
+            tagClone.originPosition = transform.position;
+
             SmartArea area = AreaManager.instance.GetArea(transform.position);
 
-            if(area != null)
+            if (area != null)
             {
                 area.AddBehavior(tagClone);
-            }    
+            }
         }
 
         public void OnValidate()
         {
 
-            if(bTag == null)
+            if (bTag == null)
             {
                 return;
             }
 
-            foreach(BlackboardOverridableProperty tagP in bTag.blackboard.properties)
+            foreach (BlackboardOverridableProperty tagP in bTag.blackboard.properties)
             {
-                if(!blackboard.HasProperty(tagP.Name))
+                if (!blackboard.HasProperty(tagP.Name))
                 {
                     blackboard.CreateProperty(tagP.property.GetType(), tagP.Name);
                     passValue.Add(false);
                 }
             }
 
-            for(int i = blackboard.properties.Count-1; i>= 0; i--)
+            for (int i = blackboard.properties.Count - 1; i >= 0; i--)
             {
                 BlackboardOverridableProperty tagP = blackboard.properties[i];
 
